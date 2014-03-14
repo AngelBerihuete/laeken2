@@ -1,9 +1,16 @@
 Package: laeken2
 Type: Package
-Title: What the package does (short line)
+Title: Calculate the TIPs and Lorenz curves
 Version: 1.0
 Date: 2014-03-12
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: A. Berihuete, C.D. Ramos and M.A. Sordo
+Maintainer: A. Berihuete <angel.berihuete@uca.es>
+Description: This package is able to calculate the curves TIP and Lorenz from complex dataset EUSILC. Also it is possible to obtain the Laeken's indicators.
+License: The MIT license
+Depends: plyr,
+    reshape2,
+    ggplot2,
+    mvtnorm,
+    quadprog,
+    xtable,
+    boot

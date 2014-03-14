@@ -1,3 +1,18 @@
+#' Filter datasets from EUSILC survey
+#' 
+#' \code{filterEUSILC} uses some packages
+#' to do the
+#' @param year is the year when the survey was done.
+#' @param varD are a vector containing the DB variables to filter
+#' @title ToDo
+#' @name filterEUSILC
+#' @aliases filtereusilc
+#' @author A. Berihuete, C.D. Ramos and M.A. Sordo
+#' @description This is an auxiliary function to obtain specific variables from EUSILC datasets files.
+#' @details Todo
+#' @return a data frame containing the variables required
+#' @export
+
 filterEUSILC <- function(year = "2006",
                          varD = c("DB010", "DB020", "DB030", "DB040", "DB090"),
                          varH = c("HB010", "HB020", "HB030",

@@ -18,7 +18,7 @@ arpr2 <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
       aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2) # poblacional
       aux.data.boot$abscisa2 <-
         aux.data.boot$acum.weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      aux.data.boot$abscisa2[length(which(aux.data.boot$ipuc < z))]
+      aux.data.boot$abscisa2[length(which(aux.data.boot$ipuc < z.index))]
     }
     boot.arpr <- boot(aux.data, statistic = arpr3, R = rep,
                        sim = "ordinary", stype = "i", z = z.index)

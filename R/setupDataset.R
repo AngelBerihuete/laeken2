@@ -54,17 +54,8 @@ setupDataset <- function(dataset, s = 'OCDE', country = 'ES' ,
   aux.data$weights1 <- dataset$HX040
   aux.data$HX040 <- dataset$HX040
   aux.data$DB090 <- dataset$DB090
-  aux.data$weights2 <- dataset$DB090*dataset$HX040  
+  aux.data$weights2 <- dataset$DB090*dataset$HX040
+  aux.data$HX050 <- dataset$HX050
+  aux.data$HX090 <- dataset$HX090
   return(aux.data)
-#   aux.data <- aux.data[order(aux.data[,1]), ]
-#   
-#   aux.data$acum.weights1 <- cumsum(aux.data$weights1)
-#   aux.data$acum.weights2 <- cumsum(aux.data$weights2)
-#   
-#   aux.data$abscisa1 <-
-#     aux.data$acum.weights1/aux.data$acum.weights1[length(aux.data$acum.weights1)]
-#   
-#   aux.data$abscisa2 <-
-#     aux.data$acum.weights2/aux.data$acum.weights2[length(aux.data$acum.weights2)]
-#   return(aux.data)
 }

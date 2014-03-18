@@ -20,13 +20,12 @@ filterEUSILC <- function(year = "2006",
                                   "HX040", "HX050", "HX080", "HX090")){
   # Function to load the dataset from CD's
   main.directory <- getwd()
-  setwd(dir)
   
   files <- dir(pattern = year)
   dataset1 <- read.table(file=files[1], header=TRUE, sep= ",")
   dataset2 <- read.table(file=files[2], header=TRUE, sep= ",")
   
-  sub.dataset1 <- subset(dataset1, select = varDB)
+  sub.dataset1 <- subset(dataset1, select = varD)
   
   # Fichero D: 
   # DB010 Año de la encuesta (4 digits) 
@@ -35,7 +34,7 @@ filterEUSILC <- function(year = "2006",
   # DB040 Región (=ES61 Andalucía)
   # DB090 Factor transversal del hogar (at least one integer and 5 decimals)
   
-  sub.dataset2 <- subset(dataset2, select = )
+  sub.dataset2 <- subset(dataset2, select = varH)
   
   
   # Fichero H:  
@@ -67,6 +66,5 @@ filterEUSILC <- function(year = "2006",
   }else{
     dataset <- cbind(sub.dataset1, sub.dataset2) # ELIMINAR LAS VARIABLES REPETIDAS!!!
   }
-  setwd(main.directory)
   return(dataset)
 }

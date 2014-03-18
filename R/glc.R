@@ -46,9 +46,7 @@ for(i in 1:n.selected){
 
 Omega.gl <- sigma/number.individuals # Omega, used for dominance test
 gl.curve <- acum.pi*vector.gamma.i
-max.gl.curve <- gl.curve[length(gl.curve)]
 lorenz <- gl.curve/max.gl.curve
-results <- list(lorenz.curve = lorenz, glorenz.curve = gl.curve, mgc = max.gl.curve,
-                Omega.gl = Omega.gl)
+results <- list(Omega = Omega.gl, lorenz.curve = lorenz, glorenz.curve = gl.curve)
 return(results)
 }

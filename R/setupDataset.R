@@ -51,6 +51,8 @@ setupDataset <- function(dataset, s = 'OCDE', country = 'ES' ,
   }
   
   aux.data <- data.frame(ipuc = ipuc)
+  aux.data$region <- factor(as.character(dataset$DB040))
+  aux.data$year <- dataset$DB010
   aux.data$weights1 <- dataset$HX040
   aux.data$HX040 <- dataset$HX040
   aux.data$DB090 <- dataset$DB090

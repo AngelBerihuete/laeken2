@@ -25,6 +25,7 @@ miuc <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
     if(verbose == FALSE){
       return(miuc.ci)
     }else{
+      plot(boot.miuc)
       summary(miuc.ci)
       return(miuc.ci)
     }

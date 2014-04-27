@@ -4,7 +4,7 @@
 #' @description ToDo
 #' @return ToDo
 #' @export
-dominanceTip <- function(list1, list2){
+test.TIP <- function(list1, list2){
   phi1 <- list1$tip.curve
   phi2 <- list2$tip.curve
   

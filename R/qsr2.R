@@ -21,9 +21,9 @@ qsr2 <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
       aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2)
       aux.data.boot$abscisa2 <-
         aux.data.boot$acum.weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      A <- aux.data$ipuc*aux.data$weights2
-      uc.S20 <- sum(A[which(aux.data$abscisa2 < 0.2)])
-      uc.S80 <- sum(A[which(aux.data$abscisa2 > 0.8)])
+      A <- aux.data.boot$ipuc*aux.data.boot$weights2
+      uc.S20 <- sum(A[which(aux.data.boot$abscisa2 < 0.2)])
+      uc.S80 <- sum(A[which(aux.data.boot$abscisa2 > 0.8)])
       uc.S80/uc.S20
     }
     boot.qsr <- boot(aux.data, statistic = qsr3, R = rep,
@@ -32,6 +32,7 @@ qsr2 <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
     if(verbose == FALSE){
       return(qsr.ci)
     }else{
+      plot(boot.qsr)
       summary(qsr.ci)
       return(qsr.ci)
     }

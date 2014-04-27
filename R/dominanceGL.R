@@ -4,9 +4,9 @@
 #' @description ToDo
 #' @return ToDo
 #' @export
-dominanceGL <- function(list1, list2){
-  phi1 <- list1$gl.curve
-  phi2 <- list2$gl.curve
+test.GL <- function(list1, list2){
+  phi1 <- list1$glorenz.curve
+  phi2 <- list2$glorenz.curve
   
   estim.phi <- phi1 - phi2
   Omega1 <- list1$Omega

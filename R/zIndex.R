@@ -19,7 +19,7 @@ zIndex <- function(aux.data, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE){
       aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2) # poblacional
       aux.data.boot$abscisa2 <-
         aux.data.boot$acum.weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      aux.data$ipuc[which(aux.data$abscisa2 > 0.5)[1]]
+      aux.data.boot$ipuc[which(aux.data.boot$abscisa2 > 0.5)[1]]
       }
     boot.z.index <- boot(aux.data, statistic = zIndex2, R = rep,
                       sim = "ordinary", stype = "i", pz = pz)
@@ -27,6 +27,7 @@ zIndex <- function(aux.data, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE){
     if(verbose == FALSE){
       return(z.index.ci)
     }else{
+      plot(boot.z.index)
       summary(z.index.ci)
       return(z.index.ci)
     }

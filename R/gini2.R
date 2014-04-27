@@ -20,6 +20,7 @@ gini2 <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
       aux.data.boot <- aux.data[i,]
       aux.data.boot <- aux.data.boot[order(aux.data.boot[,1]), ]
       aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2)
+      aux.data.boot$X <- aux.data.boot$ipuc*aux.data.boot$weights2
       aux.data.boot$p_i <- aux.data.boot$weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
       aux.data.boot$pi2 <- aux.data.boot$p_i/2
       aux.data.boot$acum.p_i <- cumsum(aux.data.boot$p_i)
@@ -34,6 +35,7 @@ gini2 <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
       return(gini.ci)
     }else{
       summary(gini.ci)
+      plot(boot.gini)
       return(gini.ci)
     }
   } 

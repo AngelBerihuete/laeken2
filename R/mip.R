@@ -25,6 +25,7 @@ mip <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
     if(verbose == FALSE){
       return(mip.ci)
     }else{
+      plot(boot.mip)
       summary(mip.ci)
       return(mip.ci)
     }

@@ -77,6 +77,7 @@ s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose 
     if(verbose == FALSE){
       return(s2.ci)
     }else{
+      plot(boot.s2)
       summary(s2.ci)
       return(s2.ci)
     }

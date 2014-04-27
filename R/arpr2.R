@@ -27,6 +27,7 @@ arpr2 <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
       return(arpr.ci)
     }else{
       summary(arpr.ci)
+      plot(boot.arpr)
       return(arpr.ci)
     }
   } 

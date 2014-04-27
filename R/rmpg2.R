@@ -32,6 +32,7 @@ rmpg2 <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
     if(verbose == FALSE){
       return(rmpg.ci)
     }else{
+      plot(boot.rmpg)
       summary(rmpg.ci)
       return(rmpg.ci)
     }

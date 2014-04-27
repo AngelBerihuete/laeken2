@@ -18,6 +18,7 @@ mih <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
     if(verbose == FALSE){
       return(mih.ci)
     }else{
+      plot(boot.mih)
       summary(mih.ci)
       return(mih.ci)
     }

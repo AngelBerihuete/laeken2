@@ -5,7 +5,7 @@
 #' @export
 
 setupDataset <- function(dataset, s = 'OCDE', country = 'ES' ,
-                          region = 'all', norm = TRUE,
+                          region = 'all',
                           deflac = NULL, ppp = TRUE) {
   
   if(!is.null(country)){ # only for one region

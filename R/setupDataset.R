@@ -4,9 +4,12 @@
 #' @details Todo
 #' @export
 
-setupDataset <- function(dataset, s = 'OCDE', country = 'ES' ,
-                          region = 'all',
-                          deflac = NULL, ppp = TRUE) {
+setupDataset <- function(dataset,
+                         s = 'OCDE',
+                         country = 'ES' ,
+                         region = 'all',
+                         deflac = NULL,
+                         ppp.rates = NULL) {
   
   if(!is.null(country)){ # only for one region
     dataset <- subset(dataset, DB020 == country)
@@ -24,8 +27,7 @@ setupDataset <- function(dataset, s = 'OCDE', country = 'ES' ,
     dataset <- dataset[-remove.data, ]
   }
   
-  if(ppp == TRUE){ # Purchasing power parity
-    data(ppp_rates)
+  if(!is.null(ppp.rates)){ # Purchasing power parity
     year1 <- unique(dataset$DB010)
     ppp.rates <- subset(ppp.rates, year == year1)
     country1 <- country
@@ -35,7 +37,6 @@ setupDataset <- function(dataset, s = 'OCDE', country = 'ES' ,
     }else{
       ppp.rate <- ppp.rates$ppp[indx4ppp]/ppp.rates$rate[indx4ppp]  
     }
-    
     dataset$HX090 <- dataset$HX090/ppp.rate
     rm(ppp.rates)
   }

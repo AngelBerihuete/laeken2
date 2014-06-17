@@ -2,7 +2,7 @@
 \alias{test.TIP}
 \title{dominanceTIP}
 \usage{
-test.TIP(list1, list2)
+test.TIP(tip1, tip2)
 }
 \value{
 ToDo

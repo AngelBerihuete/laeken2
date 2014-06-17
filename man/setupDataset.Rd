@@ -3,7 +3,7 @@
 \title{setupDataset}
 \usage{
 setupDataset(dataset, s = "OCDE", country = "ES", region = "all",
-  norm = TRUE, deflac = NULL, ppp = TRUE)
+  deflac = NULL, ppp.rates = NULL)
 }
 \description{
 This is Z index

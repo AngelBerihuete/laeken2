@@ -3,7 +3,7 @@
 #' @description This is the relative median at-risk-poverty gap function
 #' @details Todo
 #' @export
-rmpg2 <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
+rmpg <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
     aux.data <- aux.data[order(aux.data[,1]),]
     rmpg.data <- aux.data[which(aux.data$ipuc < z.index),]

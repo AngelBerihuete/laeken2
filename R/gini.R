@@ -3,7 +3,7 @@
 #' @description This is gini function
 #' @details Todo
 #' @export
-gini2 <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
+gini <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
     aux.data <- aux.data[order(aux.data[,1]), ]
     aux.data$acum.weights2 <- cumsum(aux.data$weights2)

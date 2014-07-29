@@ -9,8 +9,8 @@ testTIP <- function(dataset1, dataset2, pz = 0.6, norm = FALSE){
   z.index1 <- zIndex(dataset1, pz = pz)
   z.index2 <- zIndex(dataset2, pz = pz) 
   
-  list1 <- obtainOmegaPhi(dataset1, z.index1, normalization = norm)
-  list2 <- obtainOmegaPhi(dataset2, z.index2, normalization = norm)
+  list1 <- OmegaTIP(dataset1, z.index1, normalization = norm)
+  list2 <- OmegaTIP(dataset2, z.index2, normalization = norm)
   
   phi1 <- list1$tip.curve
   phi2 <- list2$tip.curve

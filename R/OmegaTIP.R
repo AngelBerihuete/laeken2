@@ -1,11 +1,11 @@
-#' obtainOmegaPhi
+#' OmegaTIP
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' @description ToDo
 #' @return ToDo
 #' @export
 #' 
-obtainOmegaPhi <- function(aux.data, z.index, normalization = FALSE){
+OmegaTIP <- function(aux.data, z.index, normalization = FALSE){
   
   G <- z.index-aux.data$ipuc
   aux.data$pg <- pmax(G, 0) # poverty gaps

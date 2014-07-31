@@ -5,8 +5,8 @@
 #' @export
 s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
-    # SOLO EL INDICE S2
-    # REVISAR CON CI = TRUE
+    # 
+    # REVISAR CON CI = TRUE, argumentos de diferentes longitud
     # ---------------------
     
     aux.data <- aux.data[order(aux.data[,1]), ]

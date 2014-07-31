@@ -9,7 +9,7 @@ setupDataset <- function(dataset,
                          country = 'ES' ,
                          region = 'all',
                          deflac = NULL,
-                         ppp.rates = NULL) {
+                         ppp.rates = FALSE) {
   
   if(!is.null(country)){ # only for one region
     dataset <- subset(dataset, DB020 == country)
@@ -27,7 +27,7 @@ setupDataset <- function(dataset,
     dataset <- dataset[-remove.data, ]
   }
   
-  if(!is.null(ppp.rates)){ # Purchasing power parity
+  if(ppp.rates){ # Purchasing power parity
     year1 <- unique(dataset$DB010)
     ppp.rates <- subset(ppp.rates, year == year1)
     country1 <- country

@@ -39,8 +39,8 @@ s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose 
     abscisas2 <- aux.data$abscisa2
 
     s2 <- 2*cum.areas[length(cum.areas)] # s2 index
-    results <- c(s2, abscisas2, cum.areas)
-    return(results)
+    #results <- c(s2, abscisas2, cum.areas)
+    return(s2)
   
     }else{
     s23 <- function(aux.data, i, z.index, norm){

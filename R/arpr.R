@@ -3,7 +3,11 @@
 #' @description This is arpr2 function
 #' @details Todo
 #' @export
+
 arpr <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
+# RESULTADO EN PORCENTAJE
+#---------------------
+  
   if(ci == FALSE){
     aux.data <- aux.data[order(aux.data[,1]), ]
     aux.data$acum.weights2 <- cumsum(aux.data$weights2)

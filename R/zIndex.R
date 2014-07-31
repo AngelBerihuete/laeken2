@@ -5,6 +5,8 @@
 #' @export
 zIndex <- function(aux.data, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE){ 
   if(ci == FALSE){
+    # ARPT cambiar el nombre!!!
+    # -------------------------
     aux.data <- aux.data[order(aux.data[,1]), ]
     aux.data$acum.weights2 <- cumsum(aux.data$weights2)
     aux.data$abscisa2 <-

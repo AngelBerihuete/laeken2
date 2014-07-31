@@ -5,6 +5,10 @@
 #' @export
 s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
+    # SOLO EL INDICE S2
+    # REVISAR CON CI = TRUE
+    # ---------------------
+    
     aux.data <- aux.data[order(aux.data[,1]), ]
     aux.data$acum.weights2 <- cumsum(aux.data$weights2)
     aux.data$abscisa2 <-
@@ -21,7 +25,7 @@ s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose 
         aux.data$acum.weights2)]
     }else{
       aux.data$tip <- aux.data$acum.pg/aux.data$acum.weights2[length(
-        aux.data$acum.weights2)]/z
+        aux.data$acum.weights2)]/z.index
     }
     
     alturas.triang <- aux.data$tip[2:length(aux.data$tip)] - aux.data$tip[-length(aux.data$tip)]
@@ -57,7 +61,7 @@ s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose 
           aux.data.boot$acum.weights2)]
       }else{
         aux.data.boot$tip <- aux.data.boot$acum.pg/aux.data.boot$acum.weights2[length(
-          aux.data.boot$acum.weights2)]/z
+          aux.data.boot$acum.weights2)]/z.index
       }
       
       alturas.triang <- aux.data.boot$tip[2:length(aux.data.boot$tip)] - aux.data.boot$tip[-length(aux.data.boot$tip)]

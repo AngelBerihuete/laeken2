@@ -29,6 +29,7 @@ setupDataset <- function(dataset,
   
   if(ppp.rates){ # Purchasing power parity
     year1 <- unique(dataset$DB010)
+    data(ppp.rates)
     ppp.rates <- subset(ppp.rates, year == year1)
     country1 <- country
     indx4ppp <- which(ppp.rates$country == country1)

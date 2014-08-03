@@ -5,7 +5,6 @@
 #' @export
 gini <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
-    # EN PORCENTAJE
     aux.data <- aux.data[order(aux.data[,1]), ]
     aux.data$acum.weights2 <- cumsum(aux.data$weights2)
     aux.data$X <- aux.data$ipuc*aux.data$weights2
@@ -14,7 +13,7 @@ gini <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
     aux.data$acum.p_i <- cumsum(aux.data$p_i)
     aux.data$Fi <-  aux.data$acum.p_i - aux.data$pi2
     M <- sum(aux.data$X)/aux.data$acum.weights2[length(aux.data$acum.weights2)]
-    gini <- 2*sum(aux.data$ipuc*aux.data$p_i*aux.data$Fi)/M-1
+    gini <- 100*(2*sum(aux.data$ipuc*aux.data$p_i*aux.data$Fi)/M-1)
     return(gini)
   }else{
     gini3 <- function(aux.data, i){

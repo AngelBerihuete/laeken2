@@ -10,6 +10,9 @@ setupDataset <- function(dataset,
                          region = 'all',
                          deflac = NULL,
                          ppp.rates = FALSE) {
+  # SI PPP.RATES = TRUE, entonces da problemas year1
+  # ------------------------------------------------
+  # Hay que incluirlo en el dataset original
   
   if(!is.null(country)){ # only for one region
     dataset <- subset(dataset, DB020 == country)

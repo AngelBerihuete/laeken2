@@ -5,15 +5,13 @@
 #' @export
 
 arpr <- function(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE){
-# RESULTADO EN PORCENTAJE
-#---------------------
   
   if(ci == FALSE){
     aux.data <- aux.data[order(aux.data[,1]), ]
     aux.data$acum.weights2 <- cumsum(aux.data$weights2)
     aux.data$abscisa2 <-
       aux.data$acum.weights2/aux.data$acum.weights2[length(aux.data$acum.weights2)]
-    arpr <- aux.data$abscisa2[length(which(aux.data$ipuc < z.index))]
+    arpr <- 100*(aux.data$abscisa2[length(which(aux.data$ipuc < z.index))])
     return(arpr)
   }else{
     arpr3 <- function(aux.data, i, z.index){

@@ -1,22 +1,33 @@
-#' dominanceGL
+#' test.TIP
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' @description ToDo
 #' @return ToDo
 #' @export
-test.GL <- function(list1, list2){
-  phi1 <- list1$glorenz.curve
-  phi2 <- list2$glorenz.curve
+testTIP <- function(dataset1, dataset2, pz = 0.6, norm = FALSE){
+  
+  z.index1 <- zIndex(dataset1, pz = pz)
+  z.index2 <- zIndex(dataset2, pz = pz) 
+  
+  list1 <- OmegaTIP(dataset1, z.index1, normalization = norm)
+  list2 <- OmegaTIP(dataset2, z.index2, normalization = norm)
+  
+  phi1 <- list1$tip.curve
+  phi2 <- list2$tip.curve
+  
+  phi1 <- phi1[-1]
+  phi2 <- phi2[-1]
+  
+  threshold <- max(which.max(phi1), which.max(phi2))
+  phi1 <- phi1[1:threshold]
+  phi2 <- phi2[1:threshold]
   
   estim.phi <- phi1 - phi2
-  Omega1 <- list1$Omega
-  Omega2 <- list2$Omega
+  Omega1 <- list1$Omega[1:threshold, 1:threshold]
+  Omega2 <- list2$Omega[1:threshold, 1:threshold]
   OmegaTotal <-  Omega1 + Omega2
   chol.OmegaTotal <- chol(OmegaTotal)
   M <- chol2inv(chol.OmegaTotal)
-  #M <- solve(OmegaTotal)
-  
-  require(quadprog)
   
   dvec <- estim.phi %*% M
   Amat  <- diag(length(phi1))
@@ -34,17 +45,13 @@ test.GL <- function(list1, list2){
   if(t.value < bounds4critical.values[1]){
     print("Do not reject H0")
     p.value = NA
-    return(list(t.value = t.value,  sol.QP = phi.tilde, p.value = p.value))
-  }else if(t.value > bounds4critical.values[10]){
+    return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))
+  }else if(t.value > bounds4critical.values[threshold]){
     print("Reject H0")
     p.value = NA
-    return(list(t.value = t.value,  sol.QP = phi.tilde, p.value = p.value))
+    return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))
   }else{
     print("Inconclusive region ... calculating p-value (10000 simulations)")
-    
-    require(mvtnorm)
-    require(plyr)
-    require(quadprog)
     
     data.sim <- rmvnorm(n=10000, sigma=OmegaTotal)
     
@@ -68,7 +75,6 @@ test.GL <- function(list1, list2){
     count.pos <- function(diff.phi.vec){
       positv <- length(which(diff.phi.vec>0))
       return(positv)
-      
     }
     
     n.positiv <- aaply(diff.phi,.margins=1, count.pos)
@@ -76,9 +82,9 @@ test.GL <- function(list1, list2){
     prob.chi <- rev(pchisq(t.value, df=0:threshold, lower.tail = FALSE))
     
     pos.weights <- as.numeric(names(props.positive)) + 1
-    
+
     p.value <- sum(props.positive*prob.chi[pos.weights])
     
-    return(list(t.value = t.value,  sol.QP = phi.tilde, p.value = p.value))
+    return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))
   }
 }

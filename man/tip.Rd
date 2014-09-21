@@ -3,7 +3,7 @@
 \alias{tip}
 \title{tip}
 \usage{
-tip(aux.data, z.index, norm = FALSE)
+tip(aux.data, arpt.value, norm = FALSE)
 }
 \description{
 This is TIP curve function

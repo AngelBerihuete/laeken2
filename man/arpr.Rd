@@ -3,7 +3,7 @@
 \alias{arpr}
 \title{arpr2}
 \usage{
-arpr(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE)
+arpr(aux.data, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is arpr2 function

@@ -3,6 +3,7 @@
 #' @description This is gini function
 #' @details Todo
 #' @export
+#' 
 gini <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
     aux.data <- aux.data[order(aux.data[,1]), ]
@@ -26,7 +27,7 @@ gini <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
       aux.data.boot$acum.p_i <- cumsum(aux.data.boot$p_i)
       aux.data.boot$Fi <-  aux.data.boot$acum.p_i - aux.data.boot$pi2
       M <- sum(aux.data.boot$X)/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      2*sum(aux.data.boot$ipuc*aux.data.boot$p_i*aux.data.boot$Fi)/M-1
+      100*(2*sum(aux.data.boot$ipuc*aux.data.boot$p_i*aux.data.boot$Fi)/M-1)
     }
     boot.gini <- boot(aux.data, statistic = gini3, R = rep,
                      sim = "ordinary", stype = "i")

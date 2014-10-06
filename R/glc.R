@@ -3,16 +3,16 @@
 #' @description This is generalized Lorenz curve function
 #' @details Todo
 #' @export
-glc <- function(aux.data){
+glc <- function(dataset){
   
 select <- seq(0.1, 1, by = 0.1)  
 
-aux.data <- aux.data[order(aux.data[,1]), ]
-aux.data$acum.weights1 <- cumsum(aux.data$weights1)
-aux.data$abscisa1 <-
-  aux.data$acum.weights1/aux.data$acum.weights1[length(aux.data$acum.weights1)]
-number.homes <- length(aux.data$acum.weights1)
-number.individuals <- aux.data$acum.weights1[number.homes]
+dataset <- dataset[order(dataset[,"ipuc"]), ]
+dataset$acum.HX040 <- cumsum(dataset$HX040)
+dataset$abscisa1 <-
+  dataset$acum.HX040/dataset$acum.HX040[length(dataset$acum.HX040)]
+number.homes <- length(dataset$acum.HX040)
+number.individuals <- dataset$acum.HX040[number.homes]
 
 n.selected <- length(select)
 select.aux <- select*number.individuals
@@ -23,24 +23,24 @@ vector.gamma.i <- c()
 acum.pi <- c()
 
 for(i in 1:n.selected){
-  index.aux1 <- which(aux.data$abscisa1<=select[i])
+  index.aux1 <- which(dataset$abscisa1<=select[i])
   pos.i <- length(index.aux1)
-  gamma.i <- sum(aux.data$ipuc[1:pos.i]*aux.data$weights1[1:pos.i])
+  gamma.i <- sum(dataset$ipuc[1:pos.i]*dataset$HX040[1:pos.i])
   gamma.i <- gamma.i/select.aux[i]
   vector.gamma.i[i] <- gamma.i
-  acum.pi[i] <- aux.data$abscisa1[pos.i]
+  acum.pi[i] <- dataset$abscisa1[pos.i]
   
-  lambda.i <- sum((aux.data$ipuc[1:pos.i]-gamma.i)^2*aux.data$weights1[1:pos.i])
+  lambda.i <- sum((dataset$ipuc[1:pos.i]-gamma.i)^2*dataset$HX040[1:pos.i])
   lambda.i <- lambda.i/select.aux[i]
   
   for(j in i:n.selected){
-    index.aux2 <- which(aux.data$abscisa1<=select[j])
+    index.aux2 <- which(dataset$abscisa1<=select[j])
     pos.j <- length(index.aux2)
     
-    gamma.j <- sum(aux.data$ipuc[1:pos.j]*aux.data$weights1[1:pos.j])
+    gamma.j <- sum(dataset$ipuc[1:pos.j]*dataset$HX040[1:pos.j])
     gamma.j <- gamma.j/select.aux[j]
     
-    sigma[j,i] <- sigma[i,j] <- aux.data$abscisa1[pos.i]*(lambda.i+(1-aux.data$abscisa1[pos.j])*(aux.data$ipuc[pos.i]-gamma.i)*(aux.data$ipuc[pos.j]-gamma.j)+(aux.data$ipuc[pos.i]-gamma.i)*(gamma.j-gamma.i))
+    sigma[j,i] <- sigma[i,j] <- dataset$abscisa1[pos.i]*(lambda.i+(1-dataset$abscisa1[pos.j])*(dataset$ipuc[pos.i]-gamma.i)*(dataset$ipuc[pos.j]-gamma.j)+(dataset$ipuc[pos.i]-gamma.i)*(gamma.j-gamma.i))
   }
 }
 

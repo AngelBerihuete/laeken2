@@ -3,30 +3,30 @@
 #' @description This is quintile share ratio function
 #' @details Todo
 #' @export
-qsr <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
+qsr <- function(dataset, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
-    aux.data <- aux.data[order(aux.data[,1]), ]
-    aux.data$acum.weights2 <- cumsum(aux.data$weights2)
-    aux.data$abscisa2 <-
-      aux.data$acum.weights2/aux.data$acum.weights2[length(aux.data$acum.weights2)]
-    A <- aux.data$ipuc*aux.data$weights2
-    uc.S20 <- sum(A[which(aux.data$abscisa2 < 0.2)])
-    uc.S80 <- sum(A[which(aux.data$abscisa2 > 0.8)])
+    dataset <- dataset[order(dataset[,"ipuc"]), ]
+    dataset$acum.wHX040 <- cumsum(dataset$wHX040)
+    dataset$abscisa2 <-
+      dataset$acum.wHX040/dataset$acum.wHX040[length(dataset$acum.wHX040)]
+    A <- dataset$ipuc*dataset$wHX040
+    uc.S20 <- sum(A[which(dataset$abscisa2 < 0.2)])
+    uc.S80 <- sum(A[which(dataset$abscisa2 > 0.8)])
     qsr <- uc.S80/uc.S20
     return(qsr)
   }else{
-    qsr3 <- function(aux.data, i){
-      aux.data.boot <- aux.data[i,]
-      aux.data.boot <- aux.data.boot[order(aux.data.boot[,1]), ]
-      aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2)
-      aux.data.boot$abscisa2 <-
-        aux.data.boot$acum.weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      A <- aux.data.boot$ipuc*aux.data.boot$weights2
-      uc.S20 <- sum(A[which(aux.data.boot$abscisa2 < 0.2)])
-      uc.S80 <- sum(A[which(aux.data.boot$abscisa2 > 0.8)])
+    qsr3 <- function(dataset, i){
+      dataset.boot <- dataset[i,]
+      dataset.boot <- dataset.boot[order(dataset.boot[,"ipuc"]), ]
+      dataset.boot$acum.wHX040 <- cumsum(dataset.boot$wHX040)
+      dataset.boot$abscisa2 <-
+        dataset.boot$acum.wHX040/dataset.boot$acum.wHX040[length(dataset.boot$acum.wHX040)]
+      A <- dataset.boot$ipuc*dataset.boot$wHX040
+      uc.S20 <- sum(A[which(dataset.boot$abscisa2 < 0.2)])
+      uc.S80 <- sum(A[which(dataset.boot$abscisa2 > 0.8)])
       uc.S80/uc.S20
     }
-    boot.qsr <- boot(aux.data, statistic = qsr3, R = rep,
+    boot.qsr <- boot(dataset, statistic = qsr3, R = rep,
                       sim = "ordinary", stype = "i")
     qsr.ci <- boot.ci(boot.qsr, type = "basic")
     if(verbose == FALSE){

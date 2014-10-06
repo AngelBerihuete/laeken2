@@ -3,80 +3,80 @@
 #' @description This is s2 index function
 #' @details Todo
 #' @export
-s2 <- function(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000, verbose = FALSE){
+s2 <- function(dataset, arpt.value, norm = FALSE, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
     # 
     # REVISAR CON CI = TRUE, argumentos de diferentes longitud
     # ---------------------
     
-    aux.data <- aux.data[order(aux.data[,1]), ]
-    aux.data$acum.weights2 <- cumsum(aux.data$weights2)
-    aux.data$abscisa2 <-
-      aux.data$acum.weights2/aux.data$acum.weights2[length(aux.data$acum.weights2)]
+    dataset <- dataset[order(dataset[,"ipuc"]), ]
+    dataset$acum.wHX040 <- cumsum(dataset$wHX040)
+    dataset$abscisa2 <-
+      dataset$acum.wHX040/dataset$acum.wHX040[length(dataset$acum.wHX040)]
     
-    gap.aux <- z.index-aux.data$ipuc
-    aux.data$pg <- pmax(gap.aux, 0) # poverty gaps
+    gap.aux <- arpt.value-dataset$ipuc
+    dataset$pg <- pmax(gap.aux, 0) # poverty gaps
     
-    aux.data$aux.prod <- aux.data$weights2*aux.data$pg
-    aux.data$acum.pg <- cumsum(aux.data$aux.prod)
+    dataset$aux.prod <- dataset$wHX040*dataset$pg
+    dataset$acum.pg <- cumsum(dataset$aux.prod)
     
     if(norm == FALSE){
-      aux.data$tip <- aux.data$acum.pg/aux.data$acum.weights2[length(
-        aux.data$acum.weights2)]
+      dataset$tip <- dataset$acum.pg/dataset$acum.wHX040[length(
+        dataset$acum.wHX040)]
     }else{
-      aux.data$tip <- aux.data$acum.pg/aux.data$acum.weights2[length(
-        aux.data$acum.weights2)]/z.index
+      dataset$tip <- dataset$acum.pg/dataset$acum.wHX040[length(
+        dataset$acum.wHX040)]/arpt.value
     }
     
-    alturas.triang <- aux.data$tip[2:length(aux.data$tip)] - aux.data$tip[-length(aux.data$tip)]
-    length.x <- aux.data$abscisa2[2:length(aux.data$abscisa2)] - aux.data$abscisa2[-length(aux.data$abscisa2)]
+    alturas.triang <- dataset$tip[2:length(dataset$tip)] - dataset$tip[-length(dataset$tip)]
+    length.x <- dataset$abscisa2[2:length(dataset$abscisa2)] - dataset$abscisa2[-length(dataset$abscisa2)]
     
     area.triang <- alturas.triang*length.x/2
-    area.rectan <- length.x*aux.data$tip[-length(aux.data$tip)]
+    area.rectan <- length.x*dataset$tip[-length(dataset$tip)]
     areas <- area.triang + area.rectan
-    areas <- c(aux.data$abscisa2[1]*aux.data$tip[1]/2, areas)
+    areas <- c(dataset$abscisa2[1]*dataset$tip[1]/2, areas)
     cum.areas <- cumsum(areas)
-    abscisas2 <- aux.data$abscisa2
+    abscisas2 <- dataset$abscisa2
 
     s2 <- 2*cum.areas[length(cum.areas)] # s2 index
     #results <- c(s2, abscisas2, cum.areas)
     return(s2)
   
     }else{
-    s23 <- function(aux.data, i, z.index, norm){
-      aux.data.boot <- aux.data[i,]
-      aux.data.boot <- aux.data.boot[order(aux.data.boot[,1]), ]
-      aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2) # poblacional
-      aux.data.boot$abscisa2 <-
-        aux.data.boot$acum.weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
+    s23 <- function(dataset, i, arpt.value, norm){
+      dataset.boot <- dataset[i,]
+      dataset.boot <- dataset.boot[order(dataset.boot[,"ipuc"]), ]
+      dataset.boot$acum.wHX040 <- cumsum(dataset.boot$wHX040) # poblacional
+      dataset.boot$abscisa2 <-
+        dataset.boot$acum.wHX040/dataset.boot$acum.wHX040[length(dataset.boot$acum.wHX040)]
       
-      gap.aux <- z.index-aux.data.boot$ipuc
-      aux.data.boot$pg <- pmax(gap.aux, 0) # poverty gaps
+      gap.aux <- arpt.value-dataset.boot$ipuc
+      dataset.boot$pg <- pmax(gap.aux, 0) # poverty gaps
       
-      aux.data.boot$aux.prod <- aux.data.boot$weights2*aux.data.boot$pg
-      aux.data.boot$acum.pg <- cumsum(aux.data.boot$aux.prod)
+      dataset.boot$aux.prod <- dataset.boot$wHX040*dataset.boot$pg
+      dataset.boot$acum.pg <- cumsum(dataset.boot$aux.prod)
       
       if(norm == FALSE){
-        aux.data.boot$tip <- aux.data.boot$acum.pg/aux.data.boot$acum.weights2[length(
-          aux.data.boot$acum.weights2)]
+        dataset.boot$tip <- dataset.boot$acum.pg/dataset.boot$acum.wHX040[length(
+          dataset.boot$acum.wHX040)]
       }else{
-        aux.data.boot$tip <- aux.data.boot$acum.pg/aux.data.boot$acum.weights2[length(
-          aux.data.boot$acum.weights2)]/z.index
+        dataset.boot$tip <- dataset.boot$acum.pg/dataset.boot$acum.wHX040[length(
+          dataset.boot$acum.wHX040)]/arpt.value
       }
       
-      alturas.triang <- aux.data.boot$tip[2:length(aux.data.boot$tip)] - aux.data.boot$tip[-length(aux.data.boot$tip)]
-      length.x <- aux.data.boot$abscisa2[2:length(aux.data.boot$abscisa2)] - aux.data.boot$abscisa2[-length(aux.data.boot$abscisa2)]
+      alturas.triang <- dataset.boot$tip[2:length(dataset.boot$tip)] - dataset.boot$tip[-length(dataset.boot$tip)]
+      length.x <- dataset.boot$abscisa2[2:length(dataset.boot$abscisa2)] - dataset.boot$abscisa2[-length(dataset.boot$abscisa2)]
       
       area.triang <- alturas.triang*length.x/2
-      area.rectan <- length.x*aux.data.boot$tip[-length(aux.data.boot$tip)]
+      area.rectan <- length.x*dataset.boot$tip[-length(dataset.boot$tip)]
       areas <- area.triang + area.rectan
-      areas <- c(aux.data.boot$abscisa2[1]*aux.data.boot$tip[1]/2, areas)
+      areas <- c(dataset.boot$abscisa2[1]*dataset.boot$tip[1]/2, areas)
       cum.areas <- cumsum(areas)
-      abscisas2 <- aux.data.boot$abscisa2
+      abscisas2 <- dataset.boot$abscisa2
       2*cum.areas[length(cum.areas)] # s2 index
     }
-    boot.s2 <- boot(aux.data, statistic = s23, R = rep,
-                      sim = "ordinary", stype = "i", z.index, norm)
+    boot.s2 <- boot(dataset, statistic = s23, R = rep,
+                      sim = "ordinary", stype = "i", arpt.value, norm)
     s2.ci <- boot.ci(boot.s2, type = "basic")
     if(verbose == FALSE){
       return(s2.ci)

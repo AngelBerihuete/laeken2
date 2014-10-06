@@ -3,16 +3,16 @@
 #' @description This is mean income household function
 #' @details Todo
 #' @export
-mih <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
+mih <- function(dataset, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
-    mih <- sum(aux.data$HX090*aux.data$HX050*aux.data$DB090)/sum(aux.data$DB090)
+    mih <- sum(dataset$HX090*dataset$HX050*dataset$DB090)/sum(dataset$DB090)
     return(mih)
   }else{
-    mih2 <- function(aux.data, i){
-      aux.data.boot <- aux.data[i,]
-      sum(aux.data.boot$HX090*aux.data.boot$HX050*aux.data.boot$DB090)/sum(aux.data.boot$DB090)
+    mih2 <- function(dataset, i){
+      dataset.boot <- dataset[i,]
+      sum(dataset.boot$HX090*dataset.boot$HX050*dataset.boot$DB090)/sum(dataset.boot$DB090)
     }
-    boot.mih <- boot(aux.data, statistic = mih2, R = rep,
+    boot.mih <- boot(dataset, statistic = mih2, R = rep,
                      sim = "ordinary", stype = "i")
     mih.ci <- boot.ci(boot.mih, type = "basic")
     if(verbose == FALSE){

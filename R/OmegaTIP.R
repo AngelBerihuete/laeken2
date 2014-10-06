@@ -5,17 +5,17 @@
 #' @return ToDo
 #' @export
 #' 
-OmegaTIP <- function(aux.data, z.index, normalization = FALSE){
+OmegaTIP <- function(dataset, arpt.value, normalization = FALSE){
   
-  G <- z.index-aux.data$ipuc
-  aux.data$pg <- pmax(G, 0) # poverty gaps
+  G <- arpt.value-dataset$ipuc
+  dataset$pg <- pmax(G, 0) # poverty gaps
   
-  aux.data1 <- aux.data[order(aux.data[,'pg']), ] # order with pg
-  aux.data1$Acum <- cumsum(aux.data1$weights1)
-  aux.data1$Acum.P_i <- aux.data1$Acum/aux.data1$Acum[length(aux.data1$Acum)]
+  dataset1 <- dataset[order(dataset[,'pg']), ] # order with pg
+  dataset1$Acum <- cumsum(dataset1$HX040)
+  dataset1$Acum.P_i <- dataset1$Acum/dataset1$Acum[length(dataset1$Acum)]
   
-  number.homes <- length(aux.data1$Acum)
-  number.individuals <- aux.data1$Acum[number.homes]
+  number.homes <- length(dataset1$Acum)
+  number.individuals <- dataset1$Acum[number.homes]
   
   select <- seq(0.02, 1, by = 0.02)
   
@@ -28,23 +28,23 @@ OmegaTIP <- function(aux.data, z.index, normalization = FALSE){
   acum.pi <- c()
   
   for(i in 1:n.selected){
-    index.aux1 <- which(aux.data1$Acum.P_i<=select[i])
+    index.aux1 <- which(dataset1$Acum.P_i<=select[i])
     pos.i <- length(index.aux1)
-    gamma.i <- sum(aux.data1$pg[1:pos.i]*aux.data1$weights1[1:pos.i])
+    gamma.i <- sum(dataset1$pg[1:pos.i]*dataset1$HX040[1:pos.i])
     gamma.i <- gamma.i/select.aux[i]
     vector.gamma.i[i] <- gamma.i
-    acum.pi[i] <- aux.data1$Acum.P_i[pos.i]
+    acum.pi[i] <- dataset1$Acum.P_i[pos.i]
     
-    lambda.i <- sum((aux.data1$pg[1:pos.i]-gamma.i)^2*aux.data1$weights1[1:pos.i])
+    lambda.i <- sum((dataset1$pg[1:pos.i]-gamma.i)^2*dataset1$HX040[1:pos.i])
     lambda.i <- lambda.i/select.aux[i]
     
     for(j in i:n.selected){
-      index.aux2 <- which(aux.data1$Acum.P_i<=select[j])
+      index.aux2 <- which(dataset1$Acum.P_i<=select[j])
       pos.j <- length(index.aux2)
       
-      gamma.j <- sum(aux.data1$pg[1:pos.j]*aux.data1$weights1[1:pos.j])
+      gamma.j <- sum(dataset1$pg[1:pos.j]*dataset1$HX040[1:pos.j])
       gamma.j <- gamma.j/select.aux[j]
-      sigma[j,i] <- sigma[i,j] <- aux.data1$Acum.P_i[pos.i]*(lambda.i+(1-aux.data1$Acum.P_i[pos.j])*(aux.data1$pg[pos.i]-gamma.i)*(aux.data1$pg[pos.j]-gamma.j)+(aux.data1$pg[pos.i]-gamma.i)*(gamma.j-gamma.i))
+      sigma[j,i] <- sigma[i,j] <- dataset1$Acum.P_i[pos.i]*(lambda.i+(1-dataset1$Acum.P_i[pos.j])*(dataset1$pg[pos.i]-gamma.i)*(dataset1$pg[pos.j]-gamma.j)+(dataset1$pg[pos.i]-gamma.i)*(gamma.j-gamma.i))
     }
   }
   
@@ -68,7 +68,7 @@ OmegaTIP <- function(aux.data, z.index, normalization = FALSE){
   if(normalization == FALSE){
     Omega.tip <- Omega.tip
   }else{
-    Omega.tip <- Omega.tip/z.index^2
+    Omega.tip <- Omega.tip/arpt.value^2
   }
   
   # Obtaining the TIP curve

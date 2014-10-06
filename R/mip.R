@@ -3,23 +3,23 @@
 #' @description This is mean income person function
 #' @details Todo
 #' @export
-mip <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
+mip <- function(dataset, ci = FALSE, rep = 1000, verbose = FALSE){
+  dataset <- dataset[order(dataset[,"ipuc"]),]
   if(ci == FALSE){
-    aux.data <- aux.data[order(aux.data[,1]),]
-    aux.data$acum.weights2 <- cumsum(aux.data$weights2)
-    number.homes <- length(aux.data$acum.weights2)
-    number.individuals <- aux.data$acum.weights2[number.homes]
-    mip <- sum(aux.data$HX090*aux.data$HX050*aux.data$DB090)/number.individuals
+    dataset$acum.wHX040 <- cumsum(dataset$wHX040)
+    number.homes <- length(dataset$acum.wHX040)
+    number.individuals <- dataset$acum.wHX040[number.homes]
+    mip <- sum(dataset$HX090*dataset$HX050*dataset$DB090)/number.individuals
     return(mip)
   }else{
-    mip2 <- function(aux.data, i){
-      aux.data.boot <- aux.data[i,]
-      aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2)
-      number.homes <- length(aux.data.boot$acum.weights2)
-      number.individuals <- aux.data.boot$acum.weights2[number.homes]
-      sum(aux.data.boot$HX090*aux.data.boot$HX050*aux.data.boot$DB090)/number.individuals
+    mip2 <- function(dataset, i){
+      dataset.boot <- dataset[i,]
+      dataset.boot$acum.wHX040 <- cumsum(dataset.boot$wHX040)
+      number.homes <- length(dataset.boot$acum.wHX040)
+      number.individuals <- dataset.boot$acum.wHX040[number.homes]
+      sum(dataset.boot$HX090*dataset.boot$HX050*dataset.boot$DB090)/number.individuals
     }
-    boot.mip <- boot(aux.data, statistic = mip2, R = rep,
+    boot.mip <- boot(dataset, statistic = mip2, R = rep,
                      sim = "ordinary", stype = "i")
     mip.ci <- boot.ci(boot.mip, type = "basic")
     if(verbose == FALSE){

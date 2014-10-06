@@ -4,32 +4,32 @@
 #' @details Todo
 #' @export
 #' 
-gini <- function(aux.data, ci = FALSE, rep = 1000, verbose = FALSE){
+gini <- function(dataset, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){
-    aux.data <- aux.data[order(aux.data[,1]), ]
-    aux.data$acum.weights2 <- cumsum(aux.data$weights2)
-    aux.data$X <- aux.data$ipuc*aux.data$weights2
-    aux.data$p_i <- aux.data$weights2/aux.data$acum.weights2[length(aux.data$acum.weights2)]
-    aux.data$pi2 <- aux.data$p_i/2
-    aux.data$acum.p_i <- cumsum(aux.data$p_i)
-    aux.data$Fi <-  aux.data$acum.p_i - aux.data$pi2
-    M <- sum(aux.data$X)/aux.data$acum.weights2[length(aux.data$acum.weights2)]
-    gini <- 100*(2*sum(aux.data$ipuc*aux.data$p_i*aux.data$Fi)/M-1)
+    dataset <- dataset[order(dataset[,"ipuc"]), ]
+    dataset$acum.wHX040 <- cumsum(dataset$wHX040)
+    dataset$X <- dataset$ipuc*dataset$wHX040
+    dataset$p_i <- dataset$wHX040/dataset$acum.wHX040[length(dataset$acum.wHX040)]
+    dataset$pi2 <- dataset$p_i/2
+    dataset$acum.p_i <- cumsum(dataset$p_i)
+    dataset$Fi <-  dataset$acum.p_i - dataset$pi2
+    M <- sum(dataset$X)/dataset$acum.wHX040[length(dataset$acum.wHX040)]
+    gini <- 100*(2*sum(dataset$ipuc*dataset$p_i*dataset$Fi)/M-1)
     return(gini)
   }else{
-    gini3 <- function(aux.data, i){
-      aux.data.boot <- aux.data[i,]
-      aux.data.boot <- aux.data.boot[order(aux.data.boot[,1]), ]
-      aux.data.boot$acum.weights2 <- cumsum(aux.data.boot$weights2)
-      aux.data.boot$X <- aux.data.boot$ipuc*aux.data.boot$weights2
-      aux.data.boot$p_i <- aux.data.boot$weights2/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      aux.data.boot$pi2 <- aux.data.boot$p_i/2
-      aux.data.boot$acum.p_i <- cumsum(aux.data.boot$p_i)
-      aux.data.boot$Fi <-  aux.data.boot$acum.p_i - aux.data.boot$pi2
-      M <- sum(aux.data.boot$X)/aux.data.boot$acum.weights2[length(aux.data.boot$acum.weights2)]
-      100*(2*sum(aux.data.boot$ipuc*aux.data.boot$p_i*aux.data.boot$Fi)/M-1)
+    gini3 <- function(dataset, i){
+      dataset.boot <- dataset[i,]
+      dataset.boot <- dataset.boot[order(dataset.boot[,"ipuc"]), ]
+      dataset.boot$acum.wHX040 <- cumsum(dataset.boot$wHX040)
+      dataset.boot$X <- dataset.boot$ipuc*dataset.boot$wHX040
+      dataset.boot$p_i <- dataset.boot$wHX040/dataset.boot$acum.wHX040[length(dataset.boot$acum.wHX040)]
+      dataset.boot$pi2 <- dataset.boot$p_i/2
+      dataset.boot$acum.p_i <- cumsum(dataset.boot$p_i)
+      dataset.boot$Fi <-  dataset.boot$acum.p_i - dataset.boot$pi2
+      M <- sum(dataset.boot$X)/dataset.boot$acum.wHX040[length(dataset.boot$acum.wHX040)]
+      100*(2*sum(dataset.boot$ipuc*dataset.boot$p_i*dataset.boot$Fi)/M-1)
     }
-    boot.gini <- boot(aux.data, statistic = gini3, R = rep,
+    boot.gini <- boot(dataset, statistic = gini3, R = rep,
                      sim = "ordinary", stype = "i")
     gini.ci <- boot.ci(boot.gini, type = "basic")
     if(verbose == FALSE){

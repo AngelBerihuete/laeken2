@@ -7,6 +7,7 @@ Author: A. Berihuete, C.D. Ramos and M.A. Sordo
 Maintainer: A. Berihuete <angel.berihuete@uca.es>
 Description: This package is able to calculate the curves TIP and Lorenz from complex dataset EUSILC. Also it is possible to obtain the Laeken's indicators.
 License: The MIT license
+LazyData: true
 Depends: plyr,
     dplyr,
     reshape2,

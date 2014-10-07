@@ -9,9 +9,9 @@ setupDataset <- function(dataset,
                          region = 'all',
                          s = 'OCDE',
                          deflac = NULL,
-                         ppp.rates = FALSE) {
+                         ppp = FALSE) {
   
-  # SI PPP.RATES = TRUE, entonces da problemas aux.year
+  # SI ppp.rate = TRUE, entonces da problemas aux.year
   # ------------------------------------------------
   # Hay que incluirlo en el dataset original
   
@@ -35,8 +35,8 @@ setupDataset <- function(dataset,
 #     dataset <- dataset[-remove.data, ]
 #   }
 #   
-  if(ppp.rates){ # Purchasing power parity
-    data(ppp_rates) # NO ESTA CARGANDO DE FORMA CORRECTA
+  if(ppp){ # Purchasing power parity
+    #data(ppp_rates) # NO ESTA CARGANDO DE FORMA CORRECTA
     aux.year <- unique(dataset$DB010)
     ppp.rates <- subset(ppp.rates, year == aux.year)
     country1 <- country

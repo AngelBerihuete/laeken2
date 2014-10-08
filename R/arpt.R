@@ -10,8 +10,8 @@ arpt <- function(dataset, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE){
     dataset$abscisa2 <-
       dataset$acum.wHX040/dataset$acum.wHX040[length(dataset$acum.wHX040)]
     uc.median <- dataset$ipuc[which(dataset$abscisa2 > 0.5)[1]]
-    z.index <- pz*uc.median # pz is the percentage for median
-    return(z.index)
+    arpt.value <- pz*uc.median # pz is the percentage for median
+    return(arpt.value)
   }else{
     arpt2 <- function(dataset, i, pz){
       dataset.boot <- dataset[i,]
@@ -21,15 +21,15 @@ arpt <- function(dataset, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE){
         dataset.boot$acum.wHX040/dataset.boot$acum.wHX040[length(dataset.boot$acum.wHX040)]
       dataset.boot$ipuc[which(dataset.boot$abscisa2 > 0.5)[1]]
       }
-    boot.z.index <- boot(dataset, statistic = arpt2, R = rep,
+    boot.arpt.value <- boot(dataset, statistic = arpt2, R = rep,
                       sim = "ordinary", stype = "i", pz = pz)
-    z.index.ci <- boot.ci(boot.z.index, type = "basic")
+    arpt.value.ci <- boot.ci(boot.arpt.value, type = "basic")
     if(verbose == FALSE){
-      return(z.index.ci)
+      return(arpt.value.ci)
     }else{
-      plot(boot.z.index)
-      summary(z.index.ci)
-      return(z.index.ci)
+      plot(boot.arpt.value)
+      summary(arpt.value.ci)
+      return(arpt.value.ci)
     }
   }
 }

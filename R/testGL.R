@@ -4,10 +4,10 @@
 #' @description ToDo
 #' @return ToDo
 #' @export
-testGL <- function(dataset1, dataset2){
+testGL <- function(dataset1, dataset2, samplesize = 10){
   
-  list1 <- OmegaGL(dataset1)
-  list2 <- OmegaGL(dataset2)
+  list1 <- OmegaGL(dataset1, samp = samplesize)
+  list2 <- OmegaGL(dataset2, samp = samplesize)
   
   gl1 <- list1$gl.curve
   gl2 <- list2$gl.curve

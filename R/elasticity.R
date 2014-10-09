@@ -4,8 +4,8 @@
 #' @details Todo
 #' @export
 
-elasticity <- function(lorenz.curve){
-  x <- seq(0.1, 1, by = 0.1)
+elasticity <- function(lorenz.curve, samp = 10){
+  x <- seq(0.1, 0.9, length = samp)
   y <- lorenz.curve
   spl <- smooth.spline(x, y)
   pred <- predict(spl, x, deriv=1)

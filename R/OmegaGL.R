@@ -1,6 +1,6 @@
-OmegaGL <- function(dataset){
+OmegaGL <- function(dataset, samp){
 
-select <- seq(0.1, 1, by = 0.1)
+select <- seq(0.1, 1, length = samp)
 dataset$acum.HX040 <- cumsum(dataset$HX040)
 dataset$acum.wHX040 <- cumsum(dataset$wHX040)
 dataset$abscisa1 <- dataset$acum.HX040/dataset$acum.HX040[length(dataset$acum.HX040)]

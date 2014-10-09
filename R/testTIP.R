@@ -4,13 +4,13 @@
 #' @description ToDo
 #' @return ToDo
 #' @export
-testTIP <- function(dataset1, dataset2, pz = 0.6, norm = FALSE){
+testTIP <- function(dataset1, dataset2, pz = 0.6, norm = FALSE, samplesize = 50){
   
   arpt.value1 <- arpt(dataset1, pz = pz)
   arpt.value2 <- arpt(dataset2, pz = pz) 
   
-  list1 <- OmegaTIP(dataset1, arpt.value1, normalization = norm)
-  list2 <- OmegaTIP(dataset2, arpt.value2, normalization = norm)
+  list1 <- OmegaTIP(dataset1, arpt.value1, normalization = norm, samp = samplesize)
+  list2 <- OmegaTIP(dataset2, arpt.value2, normalization = norm, samp = samplesize)
   
   phi1 <- list1$tip.curve
   phi2 <- list2$tip.curve

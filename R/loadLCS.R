@@ -26,7 +26,7 @@ loadLCS <- function(lcs_d_file, lcs_h_file){
     stop('You do not have the same identification for homes')
   }else{
     dataset <- cbind(sub.dataset1, sub.dataset2) # ELIMINAR LAS VARIABLES REPETIDAS!!
-    dataset <- subset(dataset, select = c("DB010", "DB020", "DB030",
+    dataset <- subset(dataset, select = c("DB010", "DB020", "DB030","DB040",
                                           "DB090", "HB020", "HB030",
                                           "HY020", "HX040", "HX050",
                                           "HX090"))

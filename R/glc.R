@@ -3,9 +3,9 @@
 #' @description This is generalized Lorenz curve function
 #' @details Todo
 #' @export
-glc <- function(dataset){
+glc <- function(dataset, samp = 10){
   
-select <- seq(0.1, 1, by = 0.1)  
+select <- seq(0.1, 1, length = samp)  
 
 dataset <- dataset[order(dataset[,"ipuc"]), ]
 dataset$acum.HX040 <- cumsum(dataset$HX040)

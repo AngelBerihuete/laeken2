@@ -5,7 +5,7 @@
 #' @export
 
 dualelasticity <- function(lorenz.curve, samp = 10){
-  p <- seq(0.1, 1, length = samp)
+  p <- (1:samp)/samp
   y <- lorenz.curve
   spl <- smooth.spline(p, y)
   lorenz_1_p <- predict(spl, (1-p))

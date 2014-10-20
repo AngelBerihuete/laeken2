@@ -3,7 +3,7 @@
 \alias{miuc}
 \title{miuc}
 \usage{
-miuc(aux.data, ci = FALSE, rep = 1000, verbose = FALSE)
+miuc(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is mean income person function

@@ -3,7 +3,7 @@
 \alias{mip}
 \title{mip}
 \usage{
-mip(aux.data, ci = FALSE, rep = 1000, verbose = FALSE)
+mip(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is mean income person function

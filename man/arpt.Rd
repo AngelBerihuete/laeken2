@@ -3,7 +3,7 @@
 \alias{arpt}
 \title{arpt}
 \usage{
-arpt(aux.data, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE)
+arpt(dataset, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is Z index

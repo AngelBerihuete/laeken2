@@ -3,7 +3,8 @@
 \alias{testTIP}
 \title{test.TIP}
 \usage{
-testTIP(dataset1, dataset2, pz = 0.6, norm = FALSE)
+testTIP(dataset1, dataset2, pz = 0.6, same.arpt.value = NULL,
+  norm = FALSE, samplesize = 50)
 }
 \value{
 ToDo

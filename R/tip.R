@@ -12,6 +12,6 @@ tip <- function(dataset, arpt.value, norm = FALSE){
   y.tip <- acum.w2xpg/acum.wHX040[length(acum.wHX040)]
   x.tip <- acum.wHX040/acum.wHX040[length(acum.wHX040)]
   if(norm == TRUE) y.tip <- y.tip/arpt.value
-  tip.curve <- data.frame(x.tip = x.tip, y.tip = y.tip)
+  tip.curve <- data.frame(x.tip = c(0, x.tip), y.tip = c(0, y.tip))
   return(tip.curve)
 }

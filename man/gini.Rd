@@ -3,7 +3,7 @@
 \alias{gini}
 \title{gini2}
 \usage{
-gini(aux.data, ci = FALSE, rep = 1000, verbose = FALSE)
+gini(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is gini function

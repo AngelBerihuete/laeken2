@@ -4,10 +4,16 @@
 #' @description ToDo
 #' @return ToDo
 #' @export
-testTIP <- function(dataset1, dataset2, pz = 0.6, norm = FALSE, samplesize = 50){
+testTIP <- function(dataset1, dataset2, pz = 0.6,
+                    same.arpt.value = NULL,
+                    norm = FALSE, samplesize = 50){
   
-  arpt.value1 <- arpt(dataset1, pz = pz)
-  arpt.value2 <- arpt(dataset2, pz = pz) 
+  if(is.null(same.arpt.value)){
+    arpt.value1 <- arpt(dataset1, pz = pz)
+    arpt.value2 <- arpt(dataset2, pz = pz)
+  }else{
+    arpt.value1 <- arpt.value2 <- same.arpt.value
+  }
   
   list1 <- OmegaTIP(dataset1, arpt.value1, normalization = norm, samp = samplesize)
   list2 <- OmegaTIP(dataset2, arpt.value2, normalization = norm, samp = samplesize)

@@ -3,7 +3,7 @@
 \alias{OmegaTIP}
 \title{OmegaTIP}
 \usage{
-OmegaTIP(aux.data, z.index, normalization = FALSE)
+OmegaTIP(dataset, arpt.value, normalization = FALSE, samp)
 }
 \value{
 ToDo

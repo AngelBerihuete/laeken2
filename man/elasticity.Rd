@@ -3,7 +3,7 @@
 \alias{elasticity}
 \title{elasticity}
 \usage{
-elasticity(lorenz.curve)
+elasticity(lorenz.curve, samp = 10)
 }
 \description{
 This is elasticity function

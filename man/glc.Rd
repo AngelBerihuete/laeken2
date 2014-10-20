@@ -3,7 +3,7 @@
 \alias{glc}
 \title{gl}
 \usage{
-glc(aux.data)
+glc(dataset, samp = 10)
 }
 \description{
 This is generalized Lorenz curve function

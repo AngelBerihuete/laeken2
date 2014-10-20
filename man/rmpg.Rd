@@ -3,7 +3,7 @@
 \alias{rmpg}
 \title{rmpg2}
 \usage{
-rmpg(aux.data, z.index, ci = FALSE, rep = 1000, verbose = FALSE)
+rmpg(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is the relative median at-risk-poverty gap function

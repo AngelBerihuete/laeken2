@@ -27,7 +27,7 @@ rmpg <- function(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE){
       100*(arpt.value-rmpg.median)/arpt.value
     }
     boot.rmpg <- boot(dataset, statistic = rmpg3, R = rep,
-                     sim = "ordinary", stype = "i")
+                     sim = "ordinary", stype = "i", arpt.value = arpt.value)
     rmpg.ci <- boot.ci(boot.rmpg, type = "basic")
     if(verbose == FALSE){
       return(rmpg.ci)

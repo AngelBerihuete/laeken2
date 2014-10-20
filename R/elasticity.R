@@ -5,7 +5,7 @@
 #' @export
 
 elasticity <- function(lorenz.curve, samp = 10){
-  x <- seq(0.1, 0.9, length = samp)
+  x <- (1:samp)/samp
   y <- lorenz.curve
   spl <- smooth.spline(x, y)
   pred <- predict(spl, x, deriv=1)

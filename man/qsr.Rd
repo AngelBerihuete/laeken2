@@ -3,7 +3,7 @@
 \alias{qsr}
 \title{qsr2}
 \usage{
-qsr(aux.data, ci = FALSE, rep = 1000, verbose = FALSE)
+qsr(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is quintile share ratio function

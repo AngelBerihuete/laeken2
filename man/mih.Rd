@@ -3,7 +3,7 @@
 \alias{mih}
 \title{mih}
 \usage{
-mih(aux.data, ci = FALSE, rep = 1000, verbose = FALSE)
+mih(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \description{
 This is mean income household function

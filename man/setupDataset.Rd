@@ -3,8 +3,8 @@
 \alias{setupDataset}
 \title{setupDataset}
 \usage{
-setupDataset(dataset, s = "OCDE", country = "ES", region = "all",
-  deflac = NULL, ppp.rates = FALSE)
+setupDataset(dataset, country = "ES", region = "all", s = "OCDE",
+  deflac = NULL, ppp = FALSE)
 }
 \description{
 This is Z index

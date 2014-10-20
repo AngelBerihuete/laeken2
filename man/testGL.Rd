@@ -3,7 +3,7 @@
 \alias{testGL}
 \title{testGL}
 \usage{
-testGL(dataset1, dataset2)
+testGL(dataset1, dataset2, samplesize = 10)
 }
 \value{
 ToDo

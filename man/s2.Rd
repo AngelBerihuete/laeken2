@@ -3,7 +3,7 @@
 \alias{s2}
 \title{s22}
 \usage{
-s2(aux.data, z.index, norm = FALSE, ci = FALSE, rep = 1000,
+s2(dataset, arpt.value, norm = FALSE, ci = FALSE, rep = 1000,
   verbose = FALSE)
 }
 \description{

@@ -4,11 +4,16 @@
 #' @details Todo
 #' @export
 
-elasticity <- function(lorenz.curve, samp = 10){
-  x <- (1:samp)/samp
-  y <- lorenz.curve
-  spl <- smooth.spline(x, y)
-  pred <- predict(spl, x, deriv=1)
-  curve.elasticity <- (x*pred$y)/y
-  return(curve.elasticity)
+elasticity <- function(dataset, samp = 10){
+  dataset <- subset(dataset, ipuc>0)
+  clg <- glc(dataset, samp)
+  clg <- clg[-1,]
+  clg$y.lorenz <- clg$y.lg/miuc(dataset)
+  p <- clg$x.lg
+  Lp <- clg$y.lorenz
+  spl <- smooth.spline(p, Lp)
+  Lp.deriv <- predict(spl, p , deriv=1)
+  celas <- (p*Lp.deriv$y)/Lp
+  results <- data.frame(x.elas = p, y.elas = celas)
+  return(results)
 }

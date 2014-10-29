@@ -17,7 +17,7 @@ OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
   number.homes <- length(dataset1$Acum)
   number.individuals <- dataset1$Acum[number.homes]
 
-  select <- seq(0.02, 1, length = samp)
+  select <- (1:samp)/samp
   
   n.selected <- length(select)
   select.aux <- select*number.individuals

@@ -1,11 +1,10 @@
 OmegaGL <- function(dataset, samp){
 
-select <- seq(0.1, 1, length = samp)
-dataset$acum.HX040 <- cumsum(dataset$HX040)
+select <- (1:samp)/samp
+dataset <- dataset[order(dataset[,'ipuc']), ]
 dataset$acum.wHX040 <- cumsum(dataset$wHX040)
-dataset$abscisa1 <- dataset$acum.HX040/dataset$acum.HX040[length(dataset$acum.HX040)]
 dataset$abscisa2 <- dataset$acum.wHX040/dataset$acum.wHX040[length(dataset$acum.wHX040)]
-N.homes <- length(dataset$acum.HX040)
+N.homes <- length(dataset$acum.wHX040)
 N.individuals <- round(dataset$acum.wHX040[N.homes])
 n.selected <- length(select)
 #select.aux <- select * N.individuals
@@ -42,5 +41,5 @@ for (i in 1:n.selected) {
 Omega.gl <- sigma/N.individuals
 gl.curve <- vector.gamma.i*acum.pi
 
-return(list(Omega = Omega.gl, gl.curve = gl.curve))
+return(list(Omega = Omega.gl, gl.curve = gl.curve, acum.pi = acum.pi))
 }

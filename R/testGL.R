@@ -30,7 +30,13 @@ testGL <- function(dataset1, dataset2, samplesize = 10){
   
   
   # Upper and Lower bounds for the critical value for jointly testing equality and inequality restrictions (David & Palm). alpha = 0.05, K = 1 to 17
-  bounds4critical.values <- c(2.706, 5.138, 7.045, 8.761, 10.371, 11.911, 13.401, 14.853, 16.274, 17.670, 19.045, 20.410, 21.742, 23.069, 24.384, 25.689, 26.983)
+  bounds4critical.values <- c(2.706, 5.138, 7.045, 8.761, 10.371, 
+                              11.911, 13.401, 14.853, 16.274, 17.670, 
+                              19.045, 20.410, 21.742, 23.069, 24.384, 
+                              25.689, 26.983, 28.268, 29.545, 30.814,
+                              32.077, 33.333, 34.583, 35.827, 37.066,
+                              38.301, 39.531, 40.756, 41.977, 43.194,
+                              44.408, 45.618, 46.825, 48.029, 49.229)
   
   if(t.value < bounds4critical.values[1]){
     print("Do not reject H0")

@@ -16,4 +16,5 @@ Depends: plyr,
     quadprog,
     xtable,
     boot,
-    saves
+    saves,
+    pspline

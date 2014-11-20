@@ -15,8 +15,12 @@ testTIP <- function(dataset1, dataset2, pz = 0.6,
     arpt.value1 <- arpt.value2 <- same.arpt.value
   }
   
-  list1 <- OmegaTIP(dataset1, arpt.value1, normalization = norm, samp = samplesize)
-  list2 <- OmegaTIP(dataset2, arpt.value2, normalization = norm, samp = samplesize)
+  list1 <- OmegaTIP(dataset1, arpt.value1,
+                    normalization = norm,
+                    samp = samplesize)
+  list2 <- OmegaTIP(dataset2, arpt.value2,
+                    normalization = norm,
+                    samp = samplesize)
   
   phi1 <- list1$tip.curve
   phi2 <- list2$tip.curve
@@ -33,13 +37,15 @@ testTIP <- function(dataset1, dataset2, pz = 0.6,
   Omega2 <- list2$Omega[1:threshold, 1:threshold]
   OmegaTotal <-  Omega1 + Omega2
   chol.OmegaTotal <- chol(OmegaTotal)
+  #M <- solve(OmegaTotal)
   M <- chol2inv(chol.OmegaTotal)
   
+  Dmat <- M
   dvec <- estim.phi %*% M
   Amat  <- diag(length(phi1))
   bvec <- rep(0,length(phi1))
   
-  sol <- solve.QP(M,dvec,Amat,bvec=bvec) # 
+  sol <- solve.QP(Dmat,dvec,Amat,bvec=bvec) # 
   
   phi.tilde <- sol$solution
   t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))

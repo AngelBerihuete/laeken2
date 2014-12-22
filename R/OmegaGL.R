@@ -1,45 +1,58 @@
 OmegaGL <- function(dataset, samp){
 
 select <- (1:samp)/samp
-dataset <- dataset[order(dataset[,'ipuc']), ]
-dataset$acum.wHX040 <- cumsum(dataset$wHX040)
-dataset$abscisa2 <- dataset$acum.wHX040/dataset$acum.wHX040[length(dataset$acum.wHX040)]
-N.homes <- length(dataset$acum.wHX040)
-N.individuals <- round(dataset$acum.wHX040[N.homes])
-n.selected <- length(select)
-#select.aux <- select * N.individuals
-#select.aux <- floor(select.aux)
-sigma <- matrix(NA, n.selected, n.selected)
+dataset1 <- dataset[order(dataset[,'ipuc']), ]
+
+ataset1$Acum <- cumsum(dataset1$wHX040)
+dataset1$Acum.P_i <- dataset1$Acum/dataset1$Acum[length(dataset1$Acum)]
+
+number.individuals <- dataset1$Acum[length(dataset1$Acum)]
+
+p_i <- (1:samp)/samp
+np_i <- floor(p_i*number.individuals)
+
+sigma <- mat.or.vec(samp, samp)
 vector.gamma.i <- c()
-acum.pi <- c()
 
-for (i in 1:n.selected) {
-  index.aux1 <- which(dataset$abscisa2 <= select[i])
-  pos.i <- length(index.aux1)
-  gamma.i <- sum(dataset$ipuc[1:pos.i] * dataset$wHX040[1:pos.i])
-  acum.pi[i] <- dataset$abscisa2[pos.i]
-  gamma.i <- gamma.i/(acum.pi[i]*N.individuals)
-  vector.gamma.i[i] <- gamma.i
-
-  lambda.i <- sum((dataset$ipuc[1:pos.i] - gamma.i)^2 * dataset$wHX040[1:pos.i])
-  lambda.i <- lambda.i/(acum.pi[i]*N.individuals)
-  
-  for (j in i:n.selected) {
-    index.aux2 <- which(dataset$abscisa2 <= select[j])
-    pos.j <- length(index.aux2)
-    gamma.j <- sum(dataset$ipuc[1:pos.j] * dataset$wHX040[1:pos.j])
-    gamma.j <- gamma.j/(dataset$abscisa2[pos.j]*N.individuals)
+for(i in 1:samp){
+  pos.i <- which(dataset1$Acum.P_i>=p_i[i])[1]
+  if(pos.i == 1){
+    gamma.i <- dataset1$pg[pos.i]*(dataset1$Acum[pos.i]-np_i[pos.i])
+    gamma.i <- gamma.i/np_i[i]
+    vector.gamma.i[i] <- gamma.i
+    lambda.i <- (dataset1$pg[pos.i]-gamma.i)^2*(dataset1$Acum[pos.i]-np_i[i])
+    lambda.i <- lambda.i/np_i[i]
+  }else{
+    gamma.i <- sum(dataset1$pg[1:(pos.i-1)]*dataset1$wHX040[1:(pos.i-1)]) +
+      dataset1$pg[pos.i]*(np_i[i]-dataset1$Acum[pos.i-1])
+    gamma.i <- gamma.i/np_i[i]
+    vector.gamma.i[i] <- gamma.i
+    lambda.i <- sum((dataset1$pg[1:(pos.i-1)]-gamma.i)^2*dataset1$wHX040[1:(pos.i-1)])+
+      (dataset1$pg[pos.i]-gamma.i)^2*(np_i[i]-dataset1$Acum[pos.i-1]) 
     
-    sigma[j, i] <- sigma[i, j] <- dataset$abscisa2[pos.i] * 
-      (lambda.i + (1 - dataset$abscisa2[pos.j]) * 
-         (dataset$ipuc[pos.i] - gamma.i) * 
-         (dataset$ipuc[pos.j] - gamma.j) + (dataset$ipuc[pos.i] - gamma.i) *
-         (gamma.j - gamma.i))
+    lambda.i <- lambda.i/np_i[i]
+  }
+  
+  for(j in i:samp){
+    pos.j <- which(dataset1$Acum.P_i>=p_i[j])[1]
+    
+    if(pos.j == 1){
+      gamma.j <- dataset1$pg[pos.j]*(dataset1$Acum[pos.j]-np_i[pos.j])
+      gamma.j <- gamma.j/np_i[j]
+    }else{
+      gamma.j <- sum(dataset1$pg[1:(pos.j-1)]*dataset1$wHX040[1:(pos.j-1)]) + 
+        dataset1$pg[pos.j]*(np_i[j]-dataset1$Acum[pos.j-1])
+      gamma.j <- gamma.j/np_i[j]
+    }
+    sigma[i,j] <- p_i[i]*(lambda.i+(1-p_i[j])*(dataset1$pg[pos.i]-gamma.i)*(dataset1$pg[pos.j]-gamma.j)+(dataset1$pg[pos.i]-gamma.i)*(gamma.j-gamma.i))
   }
 }
 
-Omega.gl <- sigma/N.individuals
-gl.curve <- vector.gamma.i*acum.pi
+sigma <- sigma + t(sigma)
+diag(sigma) <- diag(sigma)/2
 
-return(list(Omega = Omega.gl, gl.curve = gl.curve, acum.pi = acum.pi))
+Omega.gl <- sigma/N.individuals
+gl.curve <- vector.gamma.i*p_i
+
+return(list(Omega = Omega.gl, gl.curve = gl.curve, p_i = p_i))
 }

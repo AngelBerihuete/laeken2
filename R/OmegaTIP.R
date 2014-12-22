@@ -9,8 +9,8 @@ OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
   
   G <- arpt.value-dataset$ipuc
   dataset$pg <- pmax(G, 0) # poverty gaps
-  
   dataset1 <- dataset[order(dataset[,'pg']), ] # order with pg
+  
   dataset1$Acum <- cumsum(dataset1$wHX040)
   dataset1$Acum.P_i <- dataset1$Acum/dataset1$Acum[length(dataset1$Acum)]
   

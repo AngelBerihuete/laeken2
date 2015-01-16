@@ -14,7 +14,10 @@ elasticity <- function(dataset, samp = 10){
   lp <- predict(spl,p, nderiv = 0)
   dlp <- predict(spl,p, nderiv = 1)
   celas <- p*dlp/lp
+  celas2 <- dlp/lp
   logcelas <- log(p) + log(dlp) - log(lp)
-  results <- data.frame(x.elas = p, celas = celas, logcelas = logcelas)
+  logcelas2 <- log(dlp) - log(lp)
+  results <- data.frame(x.elas = p, celas = celas, logcelas = logcelas,
+                        celas2 = celas2, logcelas2 = logcelas2)
   return(results)
 }

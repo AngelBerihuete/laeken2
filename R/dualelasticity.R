@@ -16,6 +16,9 @@ dualelasticity <- function(dataset, samp = 10){
   dpl_1_p <- predict(spl,(1-p), nderiv = 1) 
   delas <- (p*dpl_1_p)/(1-lp_1_p)
   logdelas <- log(p) + log(dpl_1_p) - log(1-lp_1_p)
-  results <- data.frame(x.delas = p, delas = delas, logdelas = logdelas)
+  delas2 <- (dpl_1_p)/(1-lp_1_p)
+  logdelas2 <- log(dpl_1_p) - log(1-lp_1_p)
+  results <- data.frame(x.delas = p, delas = delas, logdelas = logdelas,
+                        delas2 = delas2, logdelas2 = logdelas2)
   return(results)
 }

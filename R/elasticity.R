@@ -8,12 +8,13 @@ elasticity <- function(dataset, samp = 10){
   dataset <- subset(dataset, ipuc>0)
   clg <- glc(dataset, samp)
   clg <- clg[-1,]
-  lp <- clg$y.lg
+  lp <- clg$y.lg/miuc(dataset)
   p <- clg$x.lg
-  spl <- sm.spline(p,lp, cv =TRUE)
+  spl <- sm.spline(p,lp)
   lp <- predict(spl,p, nderiv = 0)
   dlp <- predict(spl,p, nderiv = 1)
-  celas <- log(p) + log(dlp) - log(lp)
-  results <- data.frame(x.elas = p, log.y.elas = dlogcelas)
+  celas <- p*dlp/lp
+  logcelas <- log(p) + log(dlp) - log(lp)
+  results <- data.frame(x.elas = p, celas = celas, logcelas = logcelas)
   return(results)
 }

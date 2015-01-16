@@ -3,7 +3,7 @@ OmegaGL <- function(dataset, samp){
 select <- (1:samp)/samp
 dataset1 <- dataset[order(dataset[,'ipuc']), ]
 
-ataset1$Acum <- cumsum(dataset1$wHX040)
+dataset1$Acum <- cumsum(dataset1$wHX040)
 dataset1$Acum.P_i <- dataset1$Acum/dataset1$Acum[length(dataset1$Acum)]
 
 number.individuals <- dataset1$Acum[length(dataset1$Acum)]

@@ -5,7 +5,7 @@
 #' @export
 glc <- function(dataset, samp = 10){
   res.glc <- OmegaGL(dataset, samp = samp)
-  results <- data.frame(x.lg = c(0, res.glc$acum.pi) , 
+  results <- data.frame(x.lg = c(0, res.glc$p_i) , 
                         y.lg = c(0, res.glc$gl.curve))
 return(results)
 }

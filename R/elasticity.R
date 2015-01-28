@@ -17,7 +17,8 @@ elasticity <- function(dataset, samp = 10){
   celas2 <- dlp/lp
   logcelas <- log(p) + log(dlp) - log(lp)
   logcelas2 <- log(dlp) - log(lp)
-  results <- data.frame(x.elas = p, celas = celas, logcelas = logcelas,
+  loglp <- log(lp)
+  results <- data.frame(x.elas = p, loglp = loglp, celas = celas, logcelas = logcelas,
                         celas2 = celas2, logcelas2 = logcelas2)
   return(results)
 }

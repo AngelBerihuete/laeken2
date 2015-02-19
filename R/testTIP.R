@@ -43,9 +43,9 @@ testTIP <- function(dataset1, dataset2, pz = 0.6,
   Dmat <- M
   dvec <- as.numeric(M %*% estim.phi)
   Amat  <- diag(length(phi1))
-  #bvec <- rep(0,length(phi1))
+  bvec <- rep(0,length(phi1))
   
-  sol <- solve.QP(Dmat,dvec,Amat)#,bvec=bvec) # 
+  sol <- solve.QP(Dmat,dvec,Amat,bvec=bvec) # 
   
   phi.tilde <- sol$solution
   t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))

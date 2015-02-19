@@ -25,11 +25,8 @@ OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
   for(i in 1:samp){
     pos.i <- which(dataset1$Acum.P_i>=p_i[i])[1]
     if(pos.i == 1){
-      gamma.i <- dataset1$pg[pos.i]*(dataset1$Acum[pos.i]-np_i[pos.i])
-      gamma.i <- gamma.i/np_i[i]
-      vector.gamma.i[i] <- gamma.i
-      lambda.i <- (dataset1$pg[pos.i]-gamma.i)^2*(dataset1$Acum[pos.i]-np_i[i])
-      lambda.i <- lambda.i/np_i[i]
+      gamma.i <- vector.gamma.i[i] <- dataset1$pg[pos.i]
+      lambda.i <- 0
     }else{
       gamma.i <- sum(dataset1$pg[1:(pos.i-1)]*dataset1$wHX040[1:(pos.i-1)]) +
         dataset1$pg[pos.i]*(np_i[i]-dataset1$Acum[pos.i-1])
@@ -45,8 +42,7 @@ OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
       pos.j <- which(dataset1$Acum.P_i>=p_i[j])[1]
   
       if(pos.j == 1){
-        gamma.j <- dataset1$pg[pos.j]*(dataset1$Acum[pos.j]-np_i[pos.j])
-        gamma.j <- gamma.j/np_i[j]
+        gamma.j <- dataset1$pg[pos.j]
       }else{
         gamma.j <- sum(dataset1$pg[1:(pos.j-1)]*dataset1$wHX040[1:(pos.j-1)]) + 
           dataset1$pg[pos.j]*(np_i[j]-dataset1$Acum[pos.j-1])

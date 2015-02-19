@@ -4,21 +4,21 @@
 #' @details Todo
 #' @export
 
-dualelasticity <- function(dataset, samp = 10){
+dualelasticity <- function(dataset, samp = 50){
   
   dataset <- subset(dataset, ipuc>0)
   clg <- glc(dataset, samp)
   clg <- clg[-1,]
   lp <- clg$y.lg/miuc(dataset)
   p <- clg$x.lg
-  spl <- sm.spline(p,lp)
+  spl <- smooth.Pspline(p,lp, norder = 4)
   lp_1_p <- predict(spl, (1-p), nderiv = 0)
   dpl_1_p <- predict(spl,(1-p), nderiv = 1) 
   delas <- (p*dpl_1_p)/(1-lp_1_p)
   logdelas <- log(p) + log(dpl_1_p) - log(1-lp_1_p)
   delas2 <- (dpl_1_p)/(1-lp_1_p)
   logdelas2 <- log(dpl_1_p) - log(1-lp_1_p)
-  results <- data.frame(x.delas = p, delas = delas, logdelas = logdelas,
+  results <- data.frame(x.delas = p, lp = lp, delas = delas, logdelas = logdelas,
                         delas2 = delas2, logdelas2 = logdelas2)
   return(results)
 }

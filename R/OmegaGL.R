@@ -13,20 +13,17 @@ np_i <- floor(p_i*number.individuals)
 
 sigma <- mat.or.vec(samp, samp)
 vector.gamma.i <- c()
-
+quantile.i <- c()
 for(i in 1:samp){
   pos.i <- which(dataset1$Acum.P_i>=p_i[i])[1]
+  quantile.i[i] <- dataset1$ipuc[pos.i]
   if(pos.i == 1){
-    gamma.i <- dataset1$ipuc[pos.i]*(dataset1$Acum[pos.i]-np_i[pos.i])
-    gamma.i <- gamma.i/np_i[i]
-    vector.gamma.i[i] <- gamma.i
-    lambda.i <- (dataset1$ipuc[pos.i]-gamma.i)^2*(dataset1$Acum[pos.i]-np_i[i])
-    lambda.i <- lambda.i/np_i[i]
+    gamma.i <- vector.gamma.i[i] <- dataset1$ipuc[pos.i]
+    lambda.i <- 0
   }else{
     gamma.i <- sum(dataset1$ipuc[1:(pos.i-1)]*dataset1$wHX040[1:(pos.i-1)]) +
       dataset1$ipuc[pos.i]*(np_i[i]-dataset1$Acum[pos.i-1])
-    gamma.i <- gamma.i/np_i[i]
-    vector.gamma.i[i] <- gamma.i
+    gamma.i <- vector.gamma.i[i] <- gamma.i/np_i[i]
     lambda.i <- sum((dataset1$ipuc[1:(pos.i-1)]-gamma.i)^2*dataset1$wHX040[1:(pos.i-1)])+
       (dataset1$ipuc[pos.i]-gamma.i)^2*(np_i[i]-dataset1$Acum[pos.i-1]) 
     
@@ -35,10 +32,8 @@ for(i in 1:samp){
   
   for(j in i:samp){
     pos.j <- which(dataset1$Acum.P_i>=p_i[j])[1]
-    
     if(pos.j == 1){
-      gamma.j <- dataset1$ipuc[pos.j]*(dataset1$Acum[pos.j]-np_i[pos.j])
-      gamma.j <- gamma.j/np_i[j]
+      gamma.j <- dataset1$ipuc[pos.j]
     }else{
       gamma.j <- sum(dataset1$ipuc[1:(pos.j-1)]*dataset1$wHX040[1:(pos.j-1)]) + 
         dataset1$ipuc[pos.j]*(np_i[j]-dataset1$Acum[pos.j-1])
@@ -54,5 +49,6 @@ diag(sigma) <- diag(sigma)/2
 Omega.gl <- sigma/number.individuals
 gl.curve <- vector.gamma.i*p_i
 
-return(list(Omega = Omega.gl, gl.curve = gl.curve, p_i = p_i))
+return(list(Omega = Omega.gl, gl.curve = gl.curve, p_i = p_i,
+            quantile_i = quantile.i, gamma.i = vector.gamma.i))
 }

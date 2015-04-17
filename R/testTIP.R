@@ -41,11 +41,39 @@ testTIP <- function(dataset1, dataset2, pz = 0.6,
   M <- chol2inv(chol.OmegaTotal)
   
   Dmat <- M
-  dvec <- as.numeric(M %*% estim.phi)
+  dvec <- t(t(as.numeric(M %*% estim.phi)))
   Amat  <- diag(length(phi1))
-  bvec <- rep(0,length(phi1))
+  bvec <- t(t(rep(0,length(phi1))))
   
   sol <- solve.QP(Dmat,dvec,Amat,bvec=bvec) # 
+  
+  # min(-d^T b + 1/2 b^T D b) with the constraints A^T b >= b_0. 
+  
+#  library(kernlab)
+  
+#   ipop solves the quadratic programming problem :
+#     \min(c'*x + 1/2 * x' * H * x)
+#   subject to:
+#     b <= A * x <= b + r
+#   l <= x <= u
+#   Usage
+#   
+#   ipop(c, H, A, b, l, u, r, sigf = 7, maxiter = 40, margin = 0.05,
+#        bound = 10, verb = 0)
+  
+c <- dvec
+H <- M
+A <- t(diag(Amat))
+b <- 0
+r <- 0 
+n <- dim(H)[1]
+  
+uu <- 1e10  
+l <- matrix(0, nrow=n, ncol=1)
+u <- matrix(uu, nrow=n, ncol=1)
+
+ipop(c, H, A, b, l, u, r, sigf = 7, margin=1e-8, verb = 1)
+  
   
   phi.tilde <- sol$solution
   t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))

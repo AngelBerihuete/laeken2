@@ -13,7 +13,7 @@ dualelasticity3 <- function(dataset){
   
   dataset1$p <- dataset1$acum1/dataset1$acum1[length(dataset1$acum1)]
   
-  dataset1$invp <- 1-p
+  dataset1$invp <- 1-dataset1$p
   
   dataset1 <- dataset1[order(dataset1[,'invp']),]
   

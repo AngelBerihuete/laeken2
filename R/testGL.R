@@ -9,7 +9,7 @@ testGL <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   list1 <- OmegaGL(dataset1, samp = samplesize)
   list2 <- OmegaGL(dataset2, samp = samplesize)
   
-  if(generalized = FALSE){
+  if(generalized == FALSE){
     gl1 <- list1$gl.curve/miuc(dataset1)
     gl2 <- list2$gl.curve/miuc(dataset2)
   }else{

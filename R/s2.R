@@ -76,7 +76,8 @@ s2 <- function(dataset, arpt.value, norm = FALSE, ci = FALSE, rep = 1000, verbos
       2*cum.areas[length(cum.areas)] # s2 index
     }
     boot.s2 <- boot(dataset, statistic = s23, R = rep,
-                      sim = "ordinary", stype = "i", arpt.value, norm)
+                      sim = "ordinary", stype = "i",
+                    arpt.value = arpt.value, norm = norm)
     s2.ci <- boot.ci(boot.s2, type = "basic")
     if(verbose == FALSE){
       return(s2.ci)

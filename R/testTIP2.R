@@ -48,7 +48,7 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
 #  sol <- solve.QP(Dmat,dvec,Amat,bvec=bvec) # 
   
   fr <- function(x){
-    (estim.phi -x) %*% M %*% (estim.phi-x)
+    (estim.phi - x) %*% M %*% (estim.phi-x)
   }
   
   gr <- function(x){
@@ -62,7 +62,7 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
   #phi.tilde <- sol$solution
   #t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))
   phi.tilde <- res$par
-  t.value <- res$value
+  Tvalue <- res$value
   
   # Upper and Lower bounds for the critical value for jointly testing equality and inequality restrictions (David & Palm). alpha = 0.05, K = 1 to 17
   bounds4critical.values <- c(2.706, 5.138, 7.045, 8.761, 10.371, 
@@ -73,49 +73,47 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
                               38.301, 39.531, 40.756, 41.977, 43.194,
                               44.408, 45.618, 46.825, 48.029, 49.229)
   
-  if(t.value < bounds4critical.values[1]){
+  if(Tvalue < bounds4critical.values[1]){
     print("Do not reject H0")
     p.value = NA
-    return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))
-  }else if(t.value > bounds4critical.values[threshold]){
+    return(list(Tvalue = Tvalue,  solution = phi.tilde, threshold = threshold, p.value = p.value))
+  }else if(Tvalue > bounds4critical.values[threshold]){
     print("Reject H0")
     p.value = NA
-    return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))
+    return(list(Tvalue = Tvalue,  solution = phi.tilde, threshold = threshold, p.value = p.value))
   }else{
     print("Inconclusive region ... calculating p-value (10000 simulations)")
-    
-    data.sim <- rmvnorm(n=10000, sigma=OmegaTotal)
-    
-    solve.QP4sim <- function(vector.simulated, M){
-      dvec <- vector.simulated %*% M
-      Amat  <- diag(dim(M)[1])
-      bvec <- rep(0,dim(M)[1])
+    vec.solved <- matrix(NA, 1000, threshold)
+    i <- 1
+    while(i < 1001){
+      estim.phi <- as.numeric(rmvnorm(n=1, sigma=OmegaTotal))
       
-      sol <- solve.QP(M,dvec,Amat,bvec=bvec)
+      res <- try(constrOptim(rep(0.5, threshold), fr, gr,
+                  ui = diag(1, threshold), 
+                  ci = rep(0, length = threshold))$par, silent = TRUE)
       
-      phi.tilde <- sol$solution
-      
-      return(phi.tilde)  
+      if(is.numeric(res)){
+       vec.solved[i,] <- res
+       i <- i + 1
+      }
     }
-    
-    vec.solved <- aaply(data.sim, .margins = 1, solve.QP4sim, M)
     
     diff.phi <- vec.solved
     #diff.phi <- data.sim-vec.solved
     
     count.pos <- function(diff.phi.vec){
-      positv <- length(which(diff.phi.vec>0))
+      positv <- length(which(diff.phi.vec>1e-15))
       return(positv)
     }
     
     n.positiv <- aaply(diff.phi,.margins=1, count.pos)
     props.positive <- table(n.positiv)/length(n.positiv)
-    prob.chi <- rev(pchisq(t.value, df=0:threshold, lower.tail = FALSE))
+    prob.chi <- rev(pchisq(Tvalue, df=0:threshold, lower.tail = FALSE))
     
     pos.weights <- as.numeric(names(props.positive)) + 1
     
     p.value <- sum(props.positive*prob.chi[pos.weights])
     
-    return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))
+    return(list(Tvalue = Tvalue,  solution = phi.tilde, threshold = threshold, p.value = p.value))
   }
 }

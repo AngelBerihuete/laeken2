@@ -1,10 +1,10 @@
-#' test.TIP
+#' test.TIP2
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' @description ToDo
 #' @return ToDo
 #' @export
-testTIP <- function(dataset1, dataset2, pz = 0.6,
+testTIP2 <- function(dataset1, dataset2, pz = 0.6,
                     same.arpt.value = NULL,
                     norm = FALSE, samplesize = 50){
   
@@ -40,28 +40,29 @@ testTIP <- function(dataset1, dataset2, pz = 0.6,
   #M <- solve(OmegaTotal)
   M <- chol2inv(chol.OmegaTotal)
   
-  Dmat <- M
-  dvec <- as.numeric(M %*% estim.phi)
-  Amat  <- diag(length(phi1))
-  bvec <- rep(0,length(phi1))
-  
-  sol <- solve.QP(Dmat,dvec,Amat,bvec=bvec) # 
-  
-#   fr <- function(x){
-#     (estim.phi -x) %*% M %*% (estim.phi-x)
-#   }
+#   Dmat <- M
+#   dvec <- as.numeric(M %*% estim.phi)
+#   Amat  <- diag(length(phi1))
+#   bvec <- rep(0,length(phi1))
 #   
-#   gr <- function(x){
-#     -2*M %*% (estim.phi - x)
-#   }
-#   
-#   res <- constrOptim(c(0.5,0.5,0.5), fr, gr,
-#                      ui = diag(1, length(estim.phi)), 
-#                      ci = rep(0,length = length (estim.phi)))  
-#   
-  phi.tilde <- sol$solution
-  t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))
+#  sol <- solve.QP(Dmat,dvec,Amat,bvec=bvec) # 
   
+  fr <- function(x){
+    (estim.phi -x) %*% M %*% (estim.phi-x)
+  }
+  
+  gr <- function(x){
+    -2*M %*% (estim.phi - x)
+  }
+  
+  res <- constrOptim(c(0.5,0.5,0.5), fr, gr,
+                     ui = diag(1, length(estim.phi)), 
+                     ci = rep(0,length = length (estim.phi)))  
+  
+  #phi.tilde <- sol$solution
+  #t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))
+  phi.tilde <- res$par
+  t.value <- res$value
   
   # Upper and Lower bounds for the critical value for jointly testing equality and inequality restrictions (David & Palm). alpha = 0.05, K = 1 to 17
   bounds4critical.values <- c(2.706, 5.138, 7.045, 8.761, 10.371, 
@@ -112,7 +113,7 @@ testTIP <- function(dataset1, dataset2, pz = 0.6,
     prob.chi <- rev(pchisq(t.value, df=0:threshold, lower.tail = FALSE))
     
     pos.weights <- as.numeric(names(props.positive)) + 1
-
+    
     p.value <- sum(props.positive*prob.chi[pos.weights])
     
     return(list(t.value = t.value,  sol.QP = phi.tilde, threshold = threshold, p.value = p.value))

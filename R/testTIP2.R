@@ -55,9 +55,9 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
     -2*M %*% (estim.phi - x)
   }
   
-  res <- constrOptim(c(0.5,0.5,0.5), fr, gr,
-                     ui = diag(1, length(estim.phi)), 
-                     ci = rep(0,length = length (estim.phi)))  
+  res <- constrOptim(rep(0.5, threshold), fr, gr,
+                     ui = diag(1, threshold), 
+                     ci = rep(0, length = threshold))  
   
   #phi.tilde <- sol$solution
   #t.value <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))

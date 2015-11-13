@@ -85,6 +85,7 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
     print("Inconclusive region ... calculating p-value (10000 simulations)")
     vec.solved <- matrix(NA, 1000, threshold)
     i <- 1
+    iterations <- 1
     while(i < 1001){
       estim.phi <- as.numeric(rmvnorm(n=1, sigma=OmegaTotal))
       
@@ -96,13 +97,15 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
        vec.solved[i,] <- res
        i <- i + 1
       }
+      iterations <- iterations + 1
+      stopifnot(iterations < 3000)
     }
     
     diff.phi <- vec.solved
     #diff.phi <- data.sim-vec.solved
     
     count.pos <- function(diff.phi.vec){
-      positv <- length(which(diff.phi.vec>1e-15))
+      positv <- length(which(diff.phi.vec > 1e-15))
       return(positv)
     }
     

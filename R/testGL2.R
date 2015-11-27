@@ -4,7 +4,7 @@
 #' @description ToDo
 #' @return ToDo
 #' @export
-testGL <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
+testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   
   list1 <- OmegaGL(dataset1, samp = samplesize)
   list2 <- OmegaGL(dataset2, samp = samplesize)

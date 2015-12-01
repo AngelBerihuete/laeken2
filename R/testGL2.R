@@ -39,7 +39,7 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   
   #phi.tilde <- sol$solution
   #Tvalue <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))
-  phi.tilde <- res$par
+  gl.tilde <- res$par
   Tvalue <- res$value
   
   # Upper and Lower bounds for the critical value for jointly testing equality and inequality restrictions (David & Palm). alpha = 0.05, K = 1 to 17
@@ -84,8 +84,7 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
     count.pos <- function(diff.gl.vec){
       positv <- length(which(diff.gl.vec > 1e-15))
       return(positv)
-      
-    }
+      }
     
     n.positiv <- aaply(diff.gl,.margins=1, count.pos)
     props.positive <- table(n.positiv)/length(n.positiv)

@@ -33,9 +33,9 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
     -2*M %*% (estim.gl - x)
   }
   
-  res <- constrOptim(rep(0.5, threshold), fr, gr,
-                     ui = diag(1, threshold), 
-                     ci = rep(0, length = threshold))  
+  res <- constrOptim(rep(0.5, length(estim.gl)), fr, gr,
+                     ui = diag(1,length(estim.gl)), 
+                     ci = rep(0, length = length(estim.gl)))  
   
   #phi.tilde <- sol$solution
   #Tvalue <- t(as.matrix(estim.phi-phi.tilde)) %*% M %*% t(t(as.matrix(estim.phi-phi.tilde)))
@@ -61,15 +61,15 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
     return(list(Tvalue = Tvalue,  solution = gl.tilde, p.value = p.value))
   }else{
     print("Inconclusive region ... calculating p-value (10000 simulations)")
-    vec.solved <- matrix(NA, 1000, threshold)
+    vec.solved <- matrix(NA, 1000, length(estim.gl))
     i <- 1
     iterations <- 1
     while(i < 1001){
       estim.gl <- as.numeric(rmvnorm(n=1, sigma=OmegaTotal))
       
-      res <- try(constrOptim(rep(0.5, threshold), fr, gr,
-                             ui = diag(1, threshold), 
-                             ci = rep(0, length = threshold))$par, silent = TRUE)
+      res <- try(constrOptim(rep(0.5, length(estim.gl)), fr, gr,
+                             ui = diag(1, length(estim.gl)), 
+                             ci = rep(0, length = length(estim.gl)))$par, silent = TRUE)
       
       if(is.numeric(res)){
         vec.solved[i,] <- res
@@ -89,7 +89,7 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
     
     n.positiv <- aaply(diff.gl,.margins=1, count.pos)
     props.positive <- table(n.positiv)/length(n.positiv)
-    prob.chi <- rev(pchisq(Tvalue, df=0:threshold, lower.tail = FALSE))
+    prob.chi <- rev(pchisq(Tvalue, df=0:length(estim.gl), lower.tail = FALSE))
     
     pos.weights <- as.numeric(names(props.positive)) + 1
     

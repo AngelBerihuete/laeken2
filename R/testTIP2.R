@@ -74,13 +74,19 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
                               44.408, 45.618, 46.825, 48.029, 49.229)
   
   if(Tvalue < bounds4critical.values[1]){
-    print("Do not reject H0")
-    p.value = NA
-    return(list(Tvalue = Tvalue,  solution = phi.tilde, threshold = threshold, p.value = p.value))
+    p.value <- NA
+    return(list(Tvalue = Tvalue,
+                solution = phi.tilde,
+                threshold = threshold,
+                p.value = p.value,
+                decision = "Do not reject H0" ))
   }else if(Tvalue > bounds4critical.values[threshold]){
-    print("Reject H0")
-    p.value = NA
-    return(list(Tvalue = Tvalue,  solution = phi.tilde, threshold = threshold, p.value = p.value))
+    p.value <- NA
+    return(list(Tvalue = Tvalue,
+                solution = phi.tilde,
+                threshold = threshold,
+                p.value = p.value,
+                decision = "Reject H0"))
   }else{
     print("Inconclusive region ... calculating p-value (10000 simulations)")
     vec.solved <- matrix(NA, 1000, threshold)
@@ -117,6 +123,10 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
     
     p.value <- sum(props.positive*prob.chi[pos.weights])
     
-    return(list(Tvalue = Tvalue,  solution = phi.tilde, threshold = threshold, p.value = p.value))
+    return(list(Tvalue = Tvalue,
+                solution = phi.tilde,
+                threshold = threshold,
+                p.value = p.value,
+                decision = NA))
   }
 }

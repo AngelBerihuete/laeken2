@@ -1,9 +1,31 @@
-#' @title arpt
+#' @title People at risk of poverty or social exclusion
+#' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
-#' @description This is Z index
-#' @details Todo
+#' 
+#' @description Estimate the threshold for the risk of poverty.
+#' 
+#' @param pz A number between 0 and 1. The default is 0.6 representing
+#' the 60 percent of the median equivalized disposable income.
+#' @param ci logical; if  TRUE, 95% confidente interval is given
+#' for the risk of poverty.
+#' @param rep A number to do the confidence interval using boostrap
+#' technique.
+#' @param verbose logical; if TRUE the confindence interval is plotted.
+#' 
+#' @details People are considered to be at risk of poverty 
+#' when their income is less than a particular threshold. 
+#' In the EU, the standard definition for that threshold has been 
+#' set at 60 percent of the median equivalized disposable income.
+#' 
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
+#' 
+#' @examples 
+#' data(eusilc2)
+#' ATdataset <- setupDataset(eusilc2, country = "AT")
+#' arpt(ATdataset)
+#' 
 #' @export
-arpt <- function(dataset, pz = 0.6, ci = FALSE, rep = 1000, verbose = FALSE){ 
+arpt <- function(dataset, pz = 0.6, ci = FALSE, rep = 500, verbose = FALSE){ 
   
   
   if(ci == FALSE){

@@ -3,8 +3,8 @@
 \alias{laeken2}
 \docType{package}
 \title{
-What the package does (short line)
-Something cool!
+The package calculates indexes to measure the risk of poverty and 
+social exclusion. Test for TIPs and Lorenz curves are given.
 }
 \description{
 More about what it does (maybe more than one line)
@@ -16,16 +16,14 @@ Package: \tab laeken2\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2014-03-12\cr
-License: \tab What license is it under?\cr
+License: \tab GPL 2\cr
 }
 An overview of how to use the package, including the most
 important functions
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <angel.berihuete@uca.es>
-Angel Berihuete is the maintainer of this package
+A. Berihuete, C.D. Ramos and M.A. Sordo 
+Maintainer: Angel Berihuete <angel.berihuete@uca.es>
 }
 \references{
 Some references to the theory 

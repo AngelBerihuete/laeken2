@@ -2,18 +2,54 @@
 % Please edit documentation in R/s2.R
 \name{s2}
 \alias{s2}
-\title{s22}
+\title{Twice the area under the TIP (Three I's of Poverty) curve}
 \usage{
 s2(dataset, arpt.value, norm = FALSE, ci = FALSE, rep = 1000,
   verbose = FALSE)
 }
+\arguments{
+\item{arpt.value}{the at-risk-of-poverty threshold to be used  (see arpt).}
+
+\item{norm}{logical; if  TRUE, the area under the normalized TIP curve is then estimated (see tip).}
+
+\item{ci}{logical; if  TRUE, 95 percent confidence interval is given for this area.}
+
+\item{rep}{a number to do the confidence interval using boostrap technique.}
+
+\item{verbose}{logical; if TRUE the confindence interval is plotted.}
+}
+\value{
+The value of the poverty measure.
+}
 \description{
-This is s2 index function
+Estimate the poverty measure which is equal to twice the area under the 
+TIP curve.
 }
 \details{
-Todo
+The equivalized disposable income is calculated using the standar equivalence scale 
+called the modified OECD scale and recommended by Eurostat. The parametric scale 
+of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).
+
+This poverty index coincides with the Sen-Shorrocks-Thon index and the S(2,z) index of Sordo and Ramos (2011).
+}
+\examples{
+data(eusilc2)
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+s2(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
+}
+\references{
+A.F. Shorrocs (1995) Revisiting the Sen poverty index, Econometrica, 63, 1225--1230.
+
+D. Thon (1979) On measuring poverty, Review of Income and Wealth, 25, 429--439.
+
+D. Thon (1983) A poverty measure, The Indian Economic Journal, 30, 55--70.
+
+M.A. Sordo and C.D. Ramos (2011) Poverty comparisons when TIP curves intersect, SORT, 31, 65--80.
+}
+\seealso{
+tip, setupDataset
 }
 

@@ -2,17 +2,40 @@
 % Please edit documentation in R/testGL2.R
 \name{testGL2}
 \alias{testGL2}
-\title{testGL}
+\title{Test for Lorenz and Generalized Lorenz (GL) dominance}
 \usage{
 testGL2(dataset1, dataset2, generalized = FALSE, samplesize = 10)
 }
+\arguments{
+\item{generalized}{logical; if TRUE the test will be applied to two Generalized Lorenz curves.}
+
+\item{samplesize}{an integer which represents the number of Lorenz (GL) curve ordinates to be estimated.}
+}
 \value{
-ToDo
+
 }
 \description{
-ToDo
+
+}
+\details{
+
+}
+\examples{
+data(eusilc2)
+ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
+ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
+testGL2(ATdataset1, ATdataset)
+
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
+}
+\references{
+K. Xu (1997) Asymptotically distribution-free statistical test for generalized Lorenz curves: An alternative approach, Journal of Income Distribution, 7(1), 45--62.
+
+K. Xu and L. Osberg (1998) A distribution-free test for deprivation dominance, Econometric Reviews, 17, 415--429.
+}
+\seealso{
+OmegaGL
 }
 

@@ -1,27 +1,26 @@
-#' @title People at risk of poverty or social exclusion
+#' @title At-risk-of-poverty threshold
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the threshold for the risk of poverty.
+#' @description Estimate the at-risk-of-poverty threshold which is set at 60 percent of the median equivalized disposable income using the standard definition.
 #' 
-#' @param pz A number between 0 and 1. The default is 0.6 representing
-#' the 60 percent of the median equivalized disposable income.
-#' @param ci logical; if  TRUE, 95% confidente interval is given
-#' for the risk of poverty.
-#' @param rep A number to do the confidence interval using boostrap
-#' technique.
-#' @param verbose logical; if TRUE the confindence interval is plotted.
+#' @param pz a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.
+#' @param ci logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty threshold.
+#' @param rep a number to do the confidence interval using boostrap technique.
+#' @param verbose logical; if TRUE the confindence interval is plotted. 
 #' 
-#' @details People are considered to be at risk of poverty 
-#' when their income is less than a particular threshold. 
-#' In the EU, the standard definition for that threshold has been 
-#' set at 60 percent of the median equivalized disposable income.
-#' 
+#' @details The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al.(1988) can also be used. The default is the modified OECD scale  (see setupDataset).
+#'  
+#' @return The value of the at-risk-of-poverty threshold.
+#'   
 #' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
+#' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' 
+#' @seealso setupDataset
 #' 
 #' @examples 
 #' data(eusilc2)
-#' ATdataset <- setupDataset(eusilc2, country = "AT")
+#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
 #' arpt(ATdataset)
 #' 
 #' @export

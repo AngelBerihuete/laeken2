@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>s2. laeken2 1.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+A. Berihuete, C.D. Ramos and M.A. Sordo
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">laeken2 1.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Twice the area under the TIP (Three I's of Poverty) curve</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>s2(dataset, arpt.value, norm&nbsp;=&nbsp;FALSE, ci&nbsp;=&nbsp;FALSE, rep&nbsp;=&nbsp;1000, verbose&nbsp;=&nbsp;FALSE)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>arpt.value</dt>
+      <dd>the at-risk-of-poverty threshold to be used  (see arpt).</dd>
+      <dt>norm</dt>
+      <dd>logical; if  TRUE, the area under the normalized TIP curve is then estimated (see tip).</dd>
+      <dt>ci</dt>
+      <dd>logical; if  TRUE, 95 percent confidence interval is given for this area.</dd>
+      <dt>rep</dt>
+      <dd>a number to do the confidence interval using boostrap technique.</dd>
+      <dt>verbose</dt>
+      <dd>logical; if TRUE the confindence interval is plotted.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+The value of the poverty measure.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Estimate the poverty measure which is equal to twice the area under the 
+TIP curve.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The equivalized disposable income is calculated using the standar equivalence scale 
+called the modified OECD scale and recommended by Eurostat. The parametric scale 
+of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).</p>
+  
+      <p>This poverty index coincides with the Sen-Shorrocks-Thon index and the S(2,z) index of Sordo and Ramos (2011).</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>A.F. Shorrocs (1995) Revisiting the Sen poverty index, Econometrica, 63, 1225--1230.</p>
+  
+      <p>D. Thon (1979) On measuring poverty, Review of Income and Wealth, 25, 429--439.</p>
+  
+      <p>D. Thon (1983) A poverty measure, The Indian Economic Journal, 30, 55--70.</p>
+  
+      <p>M.A. Sordo and C.D. Ramos (2011) Poverty comparisons when TIP curves intersect, SORT, 31, 65--80.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(eusilc2)
+ATdataset &lt;- setupDataset(eusilc2, country = &quot;AT&quot;, s = &quot;OCDE&quot;)
+s2(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
+</div>
+<div class='output'>[1] 0.07654118
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>s2</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+tip, setupDataset
+
+    
+    <h2>Author</h2>
+    
+A. Berihuete, C.D. Ramos and M.A. Sordo
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

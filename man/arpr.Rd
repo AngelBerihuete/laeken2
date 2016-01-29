@@ -2,17 +2,43 @@
 % Please edit documentation in R/arpr.R
 \name{arpr}
 \alias{arpr}
-\title{arpr2}
+\title{At-risk-of-poverty rate}
 \usage{
 arpr(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE)
 }
+\arguments{
+\item{arpt.value}{the at-risk-of-poverty threshold to be used  (see arpt).}
+
+\item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty rate.}
+
+\item{rep}{a number to do the confidence interval using boostrap technique.}
+
+\item{verbose}{logical; if TRUE the confindence interval is plotted.}
+}
+\value{
+The value of the at-risk-of-poverty rate.
+}
 \description{
-This is arpr2 function
+Estimate the poverty rate which is defined as the share of people with an equivalized disposable income below the at-risk-of-poverty threshold.
 }
 \details{
-Todo
+The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale  (see setupDataset).
+}
+\examples{
+data(eusilc2)
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+arpr(ATdataset,arpt.value = arpt(ATdataset))
+
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
+}
+\references{
+\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
+
+B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+}
+\seealso{
+arpt, setupDataset
 }
 

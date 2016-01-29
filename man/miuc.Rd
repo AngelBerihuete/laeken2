@@ -2,17 +2,41 @@
 % Please edit documentation in R/miuc.R
 \name{miuc}
 \alias{miuc}
-\title{miuc}
+\title{Mean income per unit of consumption}
 \usage{
 miuc(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
+\arguments{
+\item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the mean income per unit of consumption.}
+
+\item{rep}{a number to do the confidence interval using boostrap technique.}
+
+\item{verbose}{logical; if TRUE the confindence interval is plotted.}
+}
+\value{
+The value of mean income per unit of consumption
+}
 \description{
-This is mean income person function
+Estimate the mean income per unit of consumption which is the mean of the equivalized disposable income.
 }
 \details{
-Todo
+The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).
+}
+\examples{
+data(eusilc2)
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+miuc(ATdataset)
+
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
+}
+\references{
+\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Equivalised_disposable_income}
+
+B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+}
+\seealso{
+setupDataset.
 }
 

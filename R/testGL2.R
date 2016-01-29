@@ -1,9 +1,29 @@
-#' testGL
+#' @title Test for Lorenz and Generalized Lorenz (GL) dominance 
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
-#' @description ToDo
-#' @return ToDo
-#' @export
+#' 
+#' @description 
+#' 
+#' @param generalized logical; if TRUE the test will be applied to two Generalized Lorenz curves.
+#' @param samplesize an integer which represents the number of Lorenz (GL) curve ordinates to be estimated.
+#' 
+#' @details  
+#' 
+#' @return 
+#' 
+#' @references K. Xu (1997) Asymptotically distribution-free statistical test for generalized Lorenz curves: An alternative approach, Journal of Income Distribution, 7(1), 45--62.
+#' @references K. Xu and L. Osberg (1998) A distribution-free test for deprivation dominance, Econometric Reviews, 17, 415--429.
+#' 
+#' @examples 
+#' data(eusilc2)
+#' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
+#' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
+#' testGL2(ATdataset1, ATdataset)
+#' 
+#' @seealso OmegaGL
+#' 
+#' @export  
+
 testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   
   list1 <- OmegaGL(dataset1, samp = samplesize)

@@ -1,3 +1,32 @@
+#' @title Matrix for testing Generalized Lorenz (GL) dominance 
+#'  
+#' @author A. Berihuete, C.D. Ramos and M.A. Sordo
+#' 
+#' @description OmegaGL computes the (empirical) vector of GL curve ordinates and its 
+#' corresponding variance-covariance matrix. This matrix will be used to compute the 
+#' test-statistic to test for the Generalized Lorenz dominance relation between two 
+#' GL curves. 
+#' 
+#' @param samp an integer which represents the number of the GL ordinates to be estimated.
+#' 
+#' @details Estimation of GL ordinates and of the variance-covariance matrix is made following
+#'  Beach and Davidson (1983).
+#' 
+#' @return 
+#' 
+#' @references C. M. Beach and R. Davidson (1983) Distribution-free statistical inference with Lorenz curves
+#' and income shares, Review of Economic Studies, 50, 723--735.
+#' @references K. Xu (1997) Asymptotically distribution-free statistical test for generalized Lorenz curves: An alternative approach, Journal of Income Distribution, 7, 45--62.
+#' 
+#' @examples 
+#' data(eusilc2)
+#' ATdataset <- setupDataset(eusilc2, country = "AT")
+#' OmegaGL(ATdataset, samp = 10)
+#' 
+#' @seealso testGL
+#' 
+#' @export  
+
 OmegaGL <- function(dataset, samp){
 
 select <- (1:samp)/samp

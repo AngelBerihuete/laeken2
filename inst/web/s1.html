@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>s1. laeken2 1.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+A. Berihuete, C.D. Ramos and M.A. Sordo
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">laeken2 1.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Maximun of TIP (Three I's of Poverty) curve</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>s1(dataset, arpt.value, norm&nbsp;=&nbsp;FALSE, ci&nbsp;=&nbsp;FALSE, rep&nbsp;=&nbsp;1000, verbose&nbsp;=&nbsp;FALSE)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>arpt.value</dt>
+      <dd>the at-risk-of-poverty threshold to be used  (see arpt).</dd>
+      <dt>norm</dt>
+      <dd>logical; if  TRUE, the normalized mean poverty gap index is calculated which adds up the extent to which individuals on average fall below the poverty threshold, and expresses it as a percentage of the poverty threshold.</dd>
+      <dt>ci</dt>
+      <dd>logical; if  TRUE, 95 percent confidence interval is given for the mean poverty gap (or the normalized mean poverty gap index).</dd>
+      <dt>rep</dt>
+      <dd>a number to do the confidence interval using boostrap technique.</dd>
+      <dt>verbose</dt>
+      <dd>logical; if TRUE the confindence interval is plotted.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+The value of the poverty measure.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Estimate the highest point of TIP curve which is a measure of the intensity of poverty. It is equal to the mean poverty gap (difference between the equivalized disposable income and the poverty threshold).</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).</p>
+  
+      <p>The normalized mean poverty gap index, also named FGT(1), is a particular case of the family of poverty indexes proposed by Foster, Greer and Thorbecke (1984).</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.</p>
+  
+      <p>J.E. Foster, J. Greer and E. Thorbecke (1984) Notes and comments. A class of descomposable poverty measures, Econometrica, 52, 761--766.</p>
+  
+      <p>M.A. Sordo and C.D. Ramos (2011) Poverty comparisons when TIP curves intersect, SORT, 31, 65--80.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(eusilc2)
+ATdataset &lt;- setupDataset(eusilc2, country = &quot;AT&quot;, , s = &quot;OCDE&quot;)
+s1(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
+</div>
+<div class='output'>[1] 0.03980937
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>s1</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+tip, setupDataset
+
+    
+    <h2>Author</h2>
+    
+A. Berihuete, C.D. Ramos and M.A. Sordo
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

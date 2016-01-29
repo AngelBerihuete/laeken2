@@ -2,17 +2,41 @@
 % Please edit documentation in R/lc.R
 \name{lc}
 \alias{lc}
-\title{lc}
+\title{Lorenz and Generalized Lorenz curves}
 \usage{
 lc(dataset, samp = 10, generalized = FALSE)
 }
+\arguments{
+\item{samp}{an integer which represents the number of ordinates to be estimated. The default is 10.}
+
+\item{generalized}{logical; if TRUE the Generalized Lorenz curve ordinates will be estimated.}
+}
+\value{
+A data.frame with the following components:
+
+x.lg vector of cumulated proportion of population.
+
+y.lg vector with values of the Lorenz or the Generalized Lorenz curve ordinates.
+}
 \description{
-This is generalized Lorenz curve function
+Estimate the Lorenz and the Generalized Lorenz curve ordinates.
 }
 \details{
-Todo
+Lorenz and Generalized Lorenz curves ordinates are computed using the equivalized disposable income. The equivalence scales employed are the modified OECD scale and the parametric scale of Buhmann et al. (1988) (see setupDataset).
+}
+\examples{
+data(eusilc2)
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+lc.curve <- lc(ATdataset)
+
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
+}
+\references{
+B C Arnold (1987) Majorization and the Lorenz order: A brief introduction, Lecture Notes in Statistics, 43, Springer-Verlag.
+}
+\seealso{
+setupDataset
 }
 

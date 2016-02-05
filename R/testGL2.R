@@ -29,7 +29,7 @@
 #' data(eusilc2)
 #' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
 #' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
-#' testGL2(ATdataset1, ATdataset, generalized = TRUE, samplesize = 10)
+#' testGL2(ATdataset1, ATdataset2, generalized = TRUE, samplesize = 10)
 #' 
 #' @seealso OmegaGL, setupDataset
 #' 

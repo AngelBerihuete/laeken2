@@ -2,11 +2,13 @@
 % Please edit documentation in R/tip.R
 \name{tip}
 \alias{tip}
-\title{Three I's of Poverty (TIP) curve}
+\title{TIP curve}
 \usage{
 tip(dataset, arpt.value, norm = FALSE)
 }
 \arguments{
+\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+
 \item{arpt.value}{the at-risk-of-poverty threshold to be used  (see arpt).}
 
 \item{norm}{logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).}
@@ -22,13 +24,14 @@ y.tip vector with values of tip curve ordinates.
 Estimate TIP curve ordinates. The TIP curve is defined by plotting the cumulated proportion of population on the x-axis and the cumulated per capita poverty gap (the distance between each income and the poverty threshold) on the y-axis from the biggest one downwards.
 }
 \details{
-TIP curve ordinates are computed using the equivalized disposable income. The equivalence scales that can be employed are the modified OECD scale or the parametric scale of Buhmann et al. (1988). The default is the modified OECD scale (see setupDataset).
+The TIP (Three I's of Poverty) curve ordinates are computed using the equivalized disposable income. The equivalence scales that can be employed are the modified OECD scale or the parametric scale of Buhmann et al. (1988). The default is the modified OECD scale (see setupDataset).
 }
 \examples{
 data(eusilc2)
 ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
 tip.curve <- tip(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
 str(tip.curve)
+
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
@@ -39,6 +42,6 @@ B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty:
 S.P. Jenkins and P.J. Lambert (1997) Three I's of poverty curves, with an analysis of UK poverty trends, Oxford Economic Papers, 49, 317--327.
 }
 \seealso{
-setupDataset
+setupDataset, arpt
 }
 

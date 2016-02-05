@@ -7,6 +7,8 @@
 arpt(dataset, pz = 0.6, ci = FALSE, rep = 500, verbose = FALSE)
 }
 \arguments{
+\item{dataset}{a data.frame containing a few variables taken directly from the EU-SILC survey as well as others which have been derived from other variables for convenience. This data.frame is created using the function setupDataset (see setupDataset).}
+
 \item{pz}{a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.}
 
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty threshold.}
@@ -34,9 +36,9 @@ arpt(ATdataset)
 A. Berihuete, C.D. Ramos and M.A. Sordo
 }
 \references{
-\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
-
 B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+
+\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
 }
 \seealso{
 setupDataset

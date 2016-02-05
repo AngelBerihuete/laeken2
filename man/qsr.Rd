@@ -7,6 +7,8 @@
 qsr(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
+\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the quintile share ratio.}
 
 \item{rep}{a number to do the confidence interval using boostrap technique.}
@@ -32,9 +34,9 @@ qsr(ATdataset)
 A. Berihuete, C.D. Ramos and M.A. Sordo
 }
 \references{
-\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Income_quintile_share_ratio}
-
 B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+
+\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Income_quintile_share_ratio}
 }
 \seealso{
 setupDataset

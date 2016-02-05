@@ -7,6 +7,8 @@
 rmpg(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
+\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+
 \item{arpt.value}{the at-risk-of-poverty threshold to be used  (see arpt).}
 
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the relative median at-risk-of-poverty gap.}
@@ -34,9 +36,9 @@ rmpg(ATdataset,arpt.value = arpt(ATdataset))
 A. Berihuete, C.D. Ramos and M.A. Sordo
 }
 \references{
-\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Relative_median_at-risk-of-poverty_gap}
-
 B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+
+\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Relative_median_at-risk-of-poverty_gap}
 }
 \seealso{
 arpt, setupDataset

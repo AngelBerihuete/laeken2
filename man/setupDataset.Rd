@@ -2,18 +2,63 @@
 % Please edit documentation in R/setupDataset.R
 \name{setupDataset}
 \alias{setupDataset}
-\title{setupDataset}
+\title{Setup dataset from EU-SILC survey}
 \usage{
 setupDataset(dataset, country = "ES", region = "all", s = "OCDE",
   deflac = NULL, ppp = FALSE)
 }
+\arguments{
+\item{dataset}{A file containing dataset EU-SILC format.}
+
+\item{country}{}
+
+\item{region}{}
+
+\item{s}{if it is set OECD the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).}
+
+\item{deflac}{a number to be used as a deflactor}
+
+\item{ppp}{}
+}
+\value{
+A data.frame with the following variables:
+
+DB010 num
+
+DB020 factor
+
+DB040 factor
+
+DB090 num
+
+HX040 int
+
+HX050
+
+HX090
+
+ipuc numeric income per unit of consumption
+
+wHX040
+}
 \description{
-This is Z index
+Extract and transform variables taken directly from the EU-SILC survey.
 }
 \details{
-Todo
+
+}
+\examples{
+data(eusilc2)
+ATdataset <- setupDataset(eusilc2, country = "AT")
+ 
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
+}
+\references{
+K. Xu and L. Osberg (1998) A distribution-free  test for deprivation dominance, Econometric Reviews, 17, 415--429.
+}
+\seealso{
+
 }
 

@@ -7,6 +7,8 @@
 gini(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
+\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the Gini coefficient.}
 
 \item{rep}{a number to do the confidence interval using boostrap technique.}
@@ -32,11 +34,11 @@ gini(ATdataset)
 A. Berihuete, C.D. Ramos and M.A. Sordo
 }
 \references{
-\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Gini_coefficient}
-
 B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
 
-E. Ferreira and A. Garín (1997) Una nota sobre el cálculo del índice de Gini, Estadística Española, 39(142), 207--218.???
+E. Ferreira and A. Garín (1997) Una nota sobre el cálculo del índice de Gini, Estadística Española, 39(142), 207--218.
+
+\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Gini_coefficient}
 }
 \seealso{
 setupDataset

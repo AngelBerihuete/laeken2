@@ -1,28 +1,40 @@
-#' @title Test for Lorenz and Generalized Lorenz (GL) dominance 
+#' @title Test for Lorenz and Generalized Lorenz dominance 
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description 
+#' @description Statistical test procedure given by Xu (1997) to study Generalized Lorenz dominance from sample Generalized Lorenz curve estimates. It also includes the study of Lorenz dominance by default following Beach and Davidson (1983).
+#'   
 #' 
-#' @param generalized logical; if TRUE the test will be applied to two Generalized Lorenz curves.
-#' @param samplesize an integer which represents the number of Lorenz (GL) curve ordinates to be estimated.
+#' @param dataset1 a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset2 a data.frame containing variables obtained by using setupDataset function.
+#' @param generalized logical; if TRUE the test will be applied to compare two Generalized Lorenz curves. In another case Lorenz curves will be compared.
+#' @param samplesize an integer which represents the number of Lorenz (Generalized Lorenz) curve ordinates to be estimated for comparison. The default is 10.
 #' 
-#' @details  
 #' 
-#' @return 
+#' @details The null hypotesis to be tested is if the Lorenz (GL) curve calculated from dataset1 dominates the one calculated from dataset2. 
 #' 
+#' 
+#' @return A list with the following components:
+#' @return Tvalue the value of the test-statistic
+#' @return p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when th Tvalue falls into an inconclusive region.
+#' @return decision if the Tvalue is less than the lower-bound of the critical value at the 5 percent significance level the decision is "Do not reject null hypothesis". If the Tvalue is greater than the upper-bound of the critical value at the 5 percent significance level the decision is "Reject null hypothesis". Lower and upper-bounds critical values are obtained from Kodde and Palm (1986). If Tvalue falls into an inconclusive region (between the lower- and upper-bounds) the p-value will be estimated following Wolak (1989).
+#' 
+#' 
+#' @references C. M. Beach and R. Davidson (1983) Distribution-free statistical inference with Lorenz curves
+#' @references D.A. Kodde and F.C. Palm (1986) Wald criteria for jointly testing equality and inequality restrictions, Econometrica, 50, 1243--1248.
+#' @references F.A. Wolak (1989), Testing inequality constrains in linear econometric models, Journal of Econometrics, 41, 205--235.
 #' @references K. Xu (1997) Asymptotically distribution-free statistical test for generalized Lorenz curves: An alternative approach, Journal of Income Distribution, 7(1), 45--62.
-#' @references K. Xu and L. Osberg (1998) A distribution-free test for deprivation dominance, Econometric Reviews, 17, 415--429.
 #' 
 #' @examples 
 #' data(eusilc2)
 #' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
 #' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
-#' testGL2(ATdataset1, ATdataset)
+#' testGL2(ATdataset1, ATdataset, generalized = TRUE, samplesize = 10)
 #' 
-#' @seealso OmegaGL
+#' @seealso OmegaGL, setupDataset
 #' 
 #' @export  
+
 
 testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   
@@ -74,15 +86,13 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   if(Tvalue < bounds4critical.values[1]){
     p.value <- NA
     return(list(Tvalue = Tvalue,
-                solution = gl.tilde,
                 p.value = p.value,
-                decision = "Do not reject H0"))
+                decision = "Do not reject null hypothesis"))
   }else if(Tvalue > bounds4critical.values[10]){
     p.value <- NA
     return(list(Tvalue = Tvalue,
-                solution = gl.tilde,
                 p.value = p.value, 
-                decision = "Reject H0"))
+                decision = "Reject null hypothesis"))
   }else{
     print("Inconclusive region ... calculating p-value (10000 simulations)")
     vec.solved <- matrix(NA, 1000, length(estim.gl))
@@ -119,7 +129,6 @@ testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
     p.value <- sum(props.positive*prob.chi[pos.weights])
     
     return(list(Tvalue = Tvalue,
-                solution = gl.tilde,
                 p.value = p.value, 
                 decision = NA))
   }

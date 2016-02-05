@@ -1,3 +1,4 @@
+#' @title Modified synthetic EU-SILC survey data
 #' Synthetic dataset generated from real Austrian EU-SILC.
 #' 
 #' The dataset is the same as in laeken package but

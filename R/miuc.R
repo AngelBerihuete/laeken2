@@ -4,6 +4,7 @@
 #' 
 #' @description Estimate the mean income per unit of consumption which is the mean of the equivalized disposable income. 
 #' 
+#' @param dataset a data.frame containing variables obtained by using setupDataset function.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the mean income per unit of consumption.
 #' @param rep a number to do the confidence interval using boostrap technique.
 #' @param verbose logical; if TRUE the confindence interval is plotted.
@@ -12,8 +13,8 @@
 #' 
 #' @return The value of mean income per unit of consumption 
 #'  
-#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Equivalised_disposable_income}
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Equivalised_disposable_income}
 #' 
 #' @examples 
 #' data(eusilc2)

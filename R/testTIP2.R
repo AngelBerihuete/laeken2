@@ -1,9 +1,47 @@
-#' test.TIP2
+#' @title Test for TIP dominance 
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
-#' @description ToDo
-#' @return ToDo
-#' @export
+#' 
+#' @description Statistical test procedure given by Xu and Osberg (1998) to study TIP dominance from sample 
+#' TIP curve estimates.  
+#' 
+#' @param dataset1 a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset2 a data.frame containing variables obtained by using setupDataset function.
+#' @param pz a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.
+#' @param same.arpt.value logical; if  TRUE, the same poverty threshold will be used for estimation of both TIP curve ordinates (see arpt).
+#' @param norm logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).
+#' @param samplesize an integer which represents the number of TIP curve ordinates to be estimated. The default is 50.
+#' 
+#' @details Because the TIP curve becomes horizontal at the arpr value, it is only necessary to have the test implemented over the interval [0, max{arpr1, arpr2}]. 
+#' For that reason both TIP curves are truncated at the same value equal to max{arpr1, arpr2} and ordinates are only compared at 
+#' at points p_i=i/samplesize, i=1, ..., k in the interval [0, max{arpr1, arpr2}]. (see arpr)
+#' 
+#' 
+#' @return A list with the following components:
+#' @return Tvalue the value of the test-statistic
+#' @return p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when the Tvalue falls into an inconclusive region.
+#' @return decision if the Tvalue is less than the lower-bound of the critical value at the 5 percent significance level the decision is "Do not reject null hypothesis". 
+#' If the Tvalue is greater than the upper-bound of the critical value at the 5 percent significance level the decision is "Reject null hypothesis". Lower and upper-bounds 
+#' critical values are obtained from Kodde and Palm (1986). If Tvalue falls into an inconclusive region (between the lower- and upper-bounds) the p-value will 
+#' be estimated following Wolak (1989).
+#' 
+#'  
+#' @seealso OmegaTIP, setupDataset, arpt, arpr
+#' 
+#' @references D.A. Kodde and F.C. Palm (1986) Wald criteria for jointly testing equality and inequality restrictions, Econometrica, 50, 1243--1248.
+#' @references F.A. Wolak (1989), Testing inequality constrains in linear econometric models, Journal of Econometrics, 41, 205--235.
+#' @references K. Xu and L. Osberg (1998) A distribution-free test for deprivation dominance, Econometric Reviews, 17, 415--429.
+#' 
+#' @examples 
+#' data(eusilc2)
+#' ATdataset <- setupDataset(eusilc2, country = "AT")
+#' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
+#' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
+#' testTIP2(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
+#' 
+#'   
+#' @export  
+
 testTIP2 <- function(dataset1, dataset2, pz = 0.6,
                     same.arpt.value = NULL,
                     norm = FALSE, samplesize = 50){
@@ -76,17 +114,13 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
   if(Tvalue < bounds4critical.values[1]){
     p.value <- NA
     return(list(Tvalue = Tvalue,
-                solution = phi.tilde,
-                threshold = threshold,
                 p.value = p.value,
-                decision = "Do not reject H0" ))
+                decision = "Do not reject null hypothesis" ))
   }else if(Tvalue > bounds4critical.values[threshold]){
     p.value <- NA
     return(list(Tvalue = Tvalue,
-                solution = phi.tilde,
-                threshold = threshold,
                 p.value = p.value,
-                decision = "Reject H0"))
+                decision = "Reject null hypothesis"))
   }else{
     print("Inconclusive region ... calculating p-value (10000 simulations)")
     vec.solved <- matrix(NA, 1000, threshold)
@@ -124,8 +158,6 @@ testTIP2 <- function(dataset1, dataset2, pz = 0.6,
     p.value <- sum(props.positive*prob.chi[pos.weights])
     
     return(list(Tvalue = Tvalue,
-                solution = phi.tilde,
-                threshold = threshold,
                 p.value = p.value,
                 decision = NA))
   }

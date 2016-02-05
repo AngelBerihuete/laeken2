@@ -4,6 +4,7 @@
 #' 
 #' @description Estimate the  quintile share ratio of an income distribution. It is defined as the ratio of total income  received by the 20 percent of the population with the highest income to that received by the 20 percent of the population with the lowest income. 
 #' 
+#' @param dataset a data.frame containing variables obtained by using setupDataset function.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the quintile share ratio.
 #' @param rep a number to do the confidence interval using boostrap technique.
 #' @param verbose logical; if TRUE the confindence interval is plotted.
@@ -12,8 +13,8 @@
 #' 
 #' @return The value of the Income quintile share ratio.
 #'  
-#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Income_quintile_share_ratio}
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Income_quintile_share_ratio}
 #' 
 #' @examples 
 #' data(eusilc2)
@@ -22,7 +23,7 @@
 #' 
 #' @seealso setupDataset
 #' 
-#' @export  
+#' @export 
 
 qsr <- function(dataset, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){

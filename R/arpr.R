@@ -4,6 +4,7 @@
 #' 
 #' @description Estimate the poverty rate which is defined as the share of people with an equivalized disposable income below the at-risk-of-poverty threshold.
 #' 
+#' @param dataset a data.frame containing variables obtained by using setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty rate.
 #' @param rep a number to do the confidence interval using boostrap technique.
@@ -13,8 +14,8 @@
 #' 
 #' @return The value of the at-risk-of-poverty rate.
 #'  
-#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
 #' 
 #' @examples 
 #' data(eusilc2)
@@ -22,6 +23,7 @@
 #' arpr(ATdataset,arpt.value = arpt(ATdataset))
 #' 
 #' @seealso arpt, setupDataset
+#' 
 #' @export
 
 arpr <- function(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE){

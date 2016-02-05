@@ -4,6 +4,7 @@
 #' 
 #' @description Estimate the relative median at-risk-of-poverty gap which is the difference between the at-risk-of-poverty threshold and the median equivalized disposable income of people below the at-risk-of-poverty threshold, expressed as a percentage of the at-risk-of-poverty threshold.
 #'
+#' @param dataset a data.frame containing variables obtained by using setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the relative median at-risk-of-poverty gap.
 #' @param rep a number to do the confidence interval using boostrap technique.
@@ -13,8 +14,8 @@
 #' 
 #' @return The value of the relative median at-risk-of-poverty gap.
 #' 
-#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Relative_median_at-risk-of-poverty_gap}
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Relative_median_at-risk-of-poverty_gap}
 #' 
 #' @examples 
 #' data(eusilc2)
@@ -23,7 +24,7 @@
 #' 
 #' @seealso arpt, setupDataset
 #' 
-#' @export
+#' @export  
 
 rmpg <- function(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE){
   if(ci == FALSE){

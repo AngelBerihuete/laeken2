@@ -1,10 +1,32 @@
-#' OmegaTIP
+#' @title Matrix for testing TIP dominance
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
-#' @description ToDo
-#' @return ToDo
-#' @export
 #' 
+#' @description The auxiliary function OmegaTIP computes the (empirical) vector of TIP curve ordinates and its corresponding covariance matrix. This matrix will be used to compute the test-statistic to test for the TIP dominance relation between two TIP curves. 
+#' 
+#' 
+#' @param dataset1 a data.frame containing variables obtained by using setupDataset function.
+#' @param arpt.value the at-risk-of-poverty threshold to be used (see arpt).
+#' @param normalization logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).
+#' @param samp an integer which represents the number of TIP curve ordinates to be estimated. These ordinates will be estimated at points p_i, chosen such that 0 < p_1 < p_2 < ... p_samp and p_i=i/samp, i=1, ..., samp.
+#'
+#'  
+#' @details Estimation of TIP curve ordinates and their covariance matrix is made following Beach and Davidson (1983) and Xu and Osberg (1998).
+#' 
+#' Calculations are made using the equivalized disposable income. The equivalence scales that can be employed are the modified OECD scale or the parametric scale of Buhmann et al. (1988). The default is the modified OECD scale (see setupDataset).
+#' 
+#' @return A list with the following components:
+#' @return Omega covariance matrix for the estimated vector of TIP curve ordinates.
+#' @return tip.curve estimated vector of TIP curve ordinates. 
+#'  
+#' @references C. M. Beach and R. Davidson (1983) Distribution-free statistical inference with Lorenz curves and income shares, Review of Economic Studies, 50, 723--735.
+#' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' @references K. Xu and L. Osberg (1998) A distribution-free test for deprivation dominance, Econometric Reviews,17, 415--429.   
+#' 
+#' @seealso testTIP, setupDataset, arpt
+#' 
+#' @export  
+
 OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
   
   G <- arpt.value-dataset$ipuc

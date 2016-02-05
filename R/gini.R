@@ -4,6 +4,7 @@
 #' 
 #' @description Estimate the Gini inequality index of an income distribution.
 #' 
+#' @param dataset a data.frame containing variables obtained by using setupDataset function.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the Gini coefficient.
 #' @param rep a number to do the confidence interval using boostrap technique.
 #' @param verbose logical; if TRUE the confindence interval is plotted.
@@ -12,9 +13,9 @@
 #' 
 #' @return The value of the Gini index. 
 #' 
-#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Gini_coefficient}
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
-#' @references E. Ferreira and A. Garín (1997) Una nota sobre el cálculo del índice de Gini, Estadística Española, 39(142), 207--218.??? 
+#' @references E. Ferreira and A. Garín (1997) Una nota sobre el cálculo del índice de Gini, Estadística Española, 39(142), 207--218.
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Gini_coefficient}
 #' 
 #' @examples 
 #' data(eusilc2)
@@ -23,7 +24,7 @@
 #' 
 #' @seealso setupDataset
 #' 
-#' @export  
+#' @export
 
 
 gini <- function(dataset, ci = FALSE, rep = 1000, verbose = FALSE){

@@ -1,8 +1,38 @@
-#' @title setupDataset
+#' @title Setup dataset from EU-SILC survey
+#'
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
-#' @description This is Z index
-#' @details Todo
-#' @export
+#' 
+#' @description Extract and transform variables taken directly from the EU-SILC survey.
+#' 
+#' @param dataset A file containing dataset EU-SILC format.
+#' @param country 
+#' @param region 
+#' @param s if it is set OECD the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).
+#' @param deflac a number to be used as a deflactor
+#' @param ppp
+#' 
+#' @details  
+#' 
+#' @return A data.frame with the following variables:
+#' @return DB010 num
+#' @return DB020 factor
+#' @return DB040 factor
+#' @return DB090 num
+#' @return HX040 int
+#' @return HX050
+#' @return HX090
+#' @return ipuc numeric income per unit of consumption
+#' @return wHX040
+#' 
+#' @seealso
+#' 
+#' @references K. Xu and L. Osberg (1998) A distribution-free  test for deprivation dominance, Econometric Reviews, 17, 415--429.
+#' 
+#' @examples 
+#' data(eusilc2)
+#' ATdataset <- setupDataset(eusilc2, country = "AT")
+#'  
+#' @export  
 
 setupDataset <- function(dataset,
                          country = 'ES' ,

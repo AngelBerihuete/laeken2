@@ -4,6 +4,7 @@
 #' 
 #' @description Estimate the at-risk-of-poverty threshold which is set at 60 percent of the median equivalized disposable income using the standard definition.
 #' 
+#' @param dataset a data.frame containing a few variables taken directly from the EU-SILC survey as well as others which have been derived from other variables for convenience. This data.frame is created using the function setupDataset (see setupDataset). 
 #' @param pz a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty threshold.
 #' @param rep a number to do the confidence interval using boostrap technique.
@@ -13,8 +14,8 @@
 #'  
 #' @return The value of the at-risk-of-poverty threshold.
 #'   
-#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
+#' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:At-risk-of-poverty_rate}
 #' 
 #' @seealso setupDataset
 #' 
@@ -24,6 +25,8 @@
 #' arpt(ATdataset)
 #' 
 #' @export
+
+
 arpt <- function(dataset, pz = 0.6, ci = FALSE, rep = 500, verbose = FALSE){ 
   
   

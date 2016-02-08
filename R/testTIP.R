@@ -37,12 +37,12 @@
 #' ATdataset <- setupDataset(eusilc2, country = "AT")
 #' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
 #' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
-#' testTIP2(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
+#' testTIP(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
 #' 
 #'   
 #' @export  
 
-testTIP2 <- function(dataset1, dataset2, pz = 0.6,
+testTIP <- function(dataset1, dataset2, pz = 0.6,
                     same.arpt.value = NULL,
                     norm = FALSE, samplesize = 50){
   

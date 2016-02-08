@@ -29,14 +29,14 @@
 #' data(eusilc2)
 #' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
 #' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
-#' testGL2(ATdataset1, ATdataset2, generalized = TRUE, samplesize = 10)
+#' testGL(ATdataset1, ATdataset2, generalized = TRUE, samplesize = 10)
 #' 
 #' @seealso OmegaGL, setupDataset
 #' 
 #' @export  
 
 
-testGL2 <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
+testGL <- function(dataset1, dataset2, generalized = FALSE, samplesize = 10){
   
   list1 <- OmegaGL(dataset1, samp = samplesize)
   list2 <- OmegaGL(dataset2, samp = samplesize)

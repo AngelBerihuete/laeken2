@@ -19,7 +19,7 @@
 #' 
 #' @examples 
 #' data(eusilc2)
-#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 #' rmpg(ATdataset,arpt.value = arpt(ATdataset))
 #' 
 #' @seealso arpt, setupDataset

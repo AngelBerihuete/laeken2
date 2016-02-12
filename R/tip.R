@@ -21,13 +21,13 @@
 #' 
 #' @examples 
 #' data(eusilc2)
-#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 #' tip.curve <- tip(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
 #' str(tip.curve)
 #' 
 #' @export
 
-tip <- function(dataset, arpt.value, norm = FALSE){
+tip <- function(dataset, arpt.value, norm = FALSE, plot = FALSE){
   dataset <- dataset[order(dataset[, "ipuc"]), ]
   dataset$pg <- pmax(arpt.value - dataset$ipuc, 0) # poverty gaps
   w2xpg <- dataset$wHX040*dataset$pg
@@ -37,5 +37,28 @@ tip <- function(dataset, arpt.value, norm = FALSE){
   x.tip <- acum.wHX040/acum.wHX040[length(acum.wHX040)]
   if(norm == TRUE) y.tip <- y.tip/arpt.value
   tip.curve <- data.frame(x.tip = c(0, x.tip), y.tip = c(0, y.tip))
+  if(plot){
+    arpr.value <- arpr(dataset, arpt.value)
+    xlim.aux <- (arpr.value/100 + 0.2)
+       p <- ggplot(data = tip.curve, aes(x.tip, y.tip)) + geom_line() +
+         geom_segment(aes(x = arpr.value/100, y = 0, 
+                          xend = arpr.value/100, yend = max(y.tip)),
+                      linetype = "longdash",
+                      color = "red") +
+         geom_segment(aes(x = 0, y = max(y.tip), 
+                          xend = arpr.value/100, yend = max(y.tip)),
+                      linetype = "longdash",
+                      color = "red") +
+         annotate("text", label = "arpr value", x = (arpr.value/100),
+                  y = -max(y.tip)/80, size = 4, colour = "red") +
+         annotate("text", label = "s1 value", x = 0,
+                  y = (max(y.tip)+max(y.tip)/80), size = 4, colour = "red") +
+        scale_x_continuous("Cumulated proportion of population",
+                           limits = c(0,xlim.aux)) +
+        scale_y_continuous("") +
+        ggtitle("TIP curve")
+       print(p)
+       }
+    
   return(tip.curve)
 }

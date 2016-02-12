@@ -4,7 +4,7 @@
 \alias{tip}
 \title{TIP curve}
 \usage{
-tip(dataset, arpt.value, norm = FALSE)
+tip(dataset, arpt.value, norm = FALSE, plot = FALSE)
 }
 \arguments{
 \item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
@@ -28,7 +28,7 @@ The TIP (Three I's of Poverty) curve ordinates are computed using the equivalize
 }
 \examples{
 data(eusilc2)
-ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 tip.curve <- tip(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
 str(tip.curve)
 

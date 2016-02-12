@@ -4,7 +4,7 @@
 \alias{setupDataset}
 \title{Setup dataset from EU-SILC survey}
 \usage{
-setupDataset(dataset, country = "ES", region = "all", s = "OCDE",
+setupDataset(dataset, country = "ES", region = "all", s = "OECD",
   deflac = NULL, ppp = FALSE)
 }
 \arguments{

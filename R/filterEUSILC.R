@@ -46,7 +46,7 @@ filterEUSILC <- function(year = "2006",
   # HY025 Factor de inflación por falta de respuesta dentro del hogar (EUROSTAT recomienda que no se utilice.  A partir de 2006 lo utilizan DE, GR/EL, PT. El resto de países emplean la imputación. Si no la usamos ni imputamos, igual hay que hacer algún comentario).
   # HX010 (nueva) factor de conversión: euro*HX010=national currency (por si acaso)
   # HX040 Número de miembros del hogar  (max. 2 digits)
-  # HX050 Unidades de consumo. Escala OCDE modificada (antes era HX040)
+  # HX050 Unidades de consumo. Escala OECD modificada (antes era HX040)
   # HX080 (nueva) Poverty indicator (puede ser interesante, asigna 1 al individuo pobre, 0 si no es pobre, en base al 60%Me(HX090))
   # HX090 (nueva) Renta disponible equivalente
   # Observación: EUROSTAT obtiene si un individuo es o no pobre en base a la variable HX090 y emplea el factor de inflación HY025

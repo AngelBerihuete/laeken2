@@ -27,7 +27,7 @@
 #' 
 #' @examples 
 #' data(eusilc2)
-#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 #' s2(ATdataset,arpt.value = arpt(ATdataset), norm = TRUE)
 #' 
 #' @export

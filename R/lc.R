@@ -19,7 +19,7 @@
 #' 
 #' @examples 
 #' data(eusilc2)
-#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 #' lc.curve <- lc(ATdataset)
 #' str(lc.curve)
 #'  
@@ -27,17 +27,33 @@
 #' 
 #' @export  
 
-lc <- function(dataset, samp = 10, generalized = FALSE){
-  
+lc <- function(dataset, samp = 10, generalized = FALSE, plot = FALSE){
   res.glc <- OmegaGL(dataset, samp = samp)
   
   if(generalized == FALSE){
     results <- data.frame(x.lg = c(0, res.glc$p_i),
                           y.lg = c(0, res.glc$gl.curve)/miuc(dataset))
+    if(plot){
+      p <- ggplot(data = results, aes(x.lg, y.lg)) + geom_line() +
+        scale_x_continuous("Cumulated proportion of population") +
+        scale_y_continuous("") +
+        ggtitle("Lorenz curve")
+      print(p)
+    }
+    
     return(results)  
   }else{
     results <- data.frame(x.lg = c(0, res.glc$p_i),
                           y.lg = c(0, res.glc$gl.curve))
+    
+    if(plot){
+      p <- ggplot(data = results, aes(x.lg, y.lg)) + geom_line() +
+        scale_x_continuous("Cumulated proportion of population") +
+        scale_y_continuous("") +
+        ggtitle("Generalized Lorenz curve")
+    print(p)
+      }
+    
     return(results)
   }
 }

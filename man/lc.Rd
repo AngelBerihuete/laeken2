@@ -4,7 +4,7 @@
 \alias{lc}
 \title{Lorenz and Generalized Lorenz curves}
 \usage{
-lc(dataset, samp = 10, generalized = FALSE)
+lc(dataset, samp = 10, generalized = FALSE, plot = FALSE)
 }
 \arguments{
 \item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
@@ -28,7 +28,7 @@ Lorenz and Generalized Lorenz curves ordinates are computed using the equivalize
 }
 \examples{
 data(eusilc2)
-ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 lc.curve <- lc(ATdataset)
 str(lc.curve)
  

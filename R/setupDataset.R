@@ -37,7 +37,7 @@
 setupDataset <- function(dataset,
                          country = 'ES' ,
                          region = 'all',
-                         s = 'OCDE',
+                         s = 'OECD',
                          deflac = NULL,
                          ppp = FALSE) {
   
@@ -86,7 +86,7 @@ setupDataset <- function(dataset,
   }
   
   # income per unit of consumption
-  if(s == "OCDE"){
+  if(s == "OECD"){
     dataset$ipuc <- dataset$HX090  
   }else{
     dataset$ipuc <- (dataset$HX090*dataset$HX050)/dataset$HX040^s

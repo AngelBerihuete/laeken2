@@ -24,7 +24,7 @@
 #' 
 #' @examples 
 #' data(eusilc2)
-#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+#' ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 #' omega.gl <- OmegaGL(ATdataset, samp = 10)
 #' str(omega.gl)
 #' 

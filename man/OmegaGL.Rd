@@ -34,7 +34,7 @@ Calculations are made using the equivalized disposable income. The equivalence s
 }
 \examples{
 data(eusilc2)
-ATdataset <- setupDataset(eusilc2, country = "AT", s = "OCDE")
+ATdataset <- setupDataset(eusilc2, country = "AT", s = "OECD")
 omega.gl <- OmegaGL(ATdataset, samp = 10)
 str(omega.gl)
 

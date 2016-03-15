@@ -7,7 +7,7 @@
 qsr(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the quintile share ratio.}
 
@@ -16,10 +16,10 @@ qsr(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 \item{verbose}{logical; if TRUE the confindence interval is plotted.}
 }
 \value{
-The value of the Income quintile share ratio.
+The value of the income quintile share ratio.
 }
 \description{
-Estimate the  quintile share ratio of an income distribution. It is defined as the ratio of total income  received by the 20 percent of the population with the highest income to that received by the 20 percent of the population with the lowest income.
+Estimates the  quintile share ratio of an income distribution. It is defined as the ratio of total income  received by the 20 percent of the population with the highest income to that received by the 20 percent of the population with the lowest income.
 }
 \details{
 It is calculated using the equivalized disposable income. Two types of equivalence scales can be used, the modified OECD scale and the parametric scale of Buhmann et al. ( 1988). The default is the modified OECD scale  (see setupDataset).

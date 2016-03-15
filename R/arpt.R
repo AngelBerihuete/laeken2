@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the at-risk-of-poverty threshold which is set at 60 percent of the median equivalized disposable income using the standard definition.
+#' @description Estimates the at-risk-of-poverty threshold which is set at 60 percent of the median equivalized disposable income using the standard definition.
 #' 
-#' @param dataset a data.frame containing a few variables taken directly from the EU-SILC survey as well as others which have been derived from other variables for convenience. This data.frame is created using the function setupDataset (see setupDataset). 
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param pz a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty threshold.
 #' @param rep a number to do the confidence interval using boostrap technique.

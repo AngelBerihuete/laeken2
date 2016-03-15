@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the highest point of the TIP curve which is a measure of the intensity of poverty. It is equal to the mean poverty gap (difference between the poverty threshold and the equivalized disposable income).
+#' @description Estimates the highest point of the TIP curve which is a measure of the intensity of poverty. It is equal to the mean poverty gap (difference between the poverty threshold and the equivalized disposable income).
 #' 
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param norm logical; if  TRUE, the normalized mean poverty gap index is calculated which adds up the extent to which individuals on average fall below the poverty threshold, and expresses it as a percentage of the poverty threshold.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the mean poverty gap (or the normalized mean poverty gap index).

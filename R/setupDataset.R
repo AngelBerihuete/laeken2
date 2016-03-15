@@ -2,35 +2,38 @@
 #'
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Extract and transform variables taken directly from the EU-SILC survey.
+#' @description Extracts and transforms variables taken directly from the EU-SILC survey.
 #' 
-#' @param dataset A file containing dataset EU-SILC format.
-#' @param country 
-#' @param region 
-#' @param s if it is set OECD the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).
-#' @param deflac a number to be used as a deflactor
-#' @param ppp
+#' @param dataset a data.frame containing variables in the EU-SILC microdata format.
+#' @param country a character string specifying the country whose data will be considered.
+#' @param region a character string specifying the region of the country whose data will be considered. 
+#' @param s either a character string or a numeric value between 0 and 1 specifying the equivalence scale to be used to obtain the equivalized disposable income. The default ("OECD") considers the standar modified OECD scale.
+#' @param deflac numeric; a number to be used as a deflator. The default (NULL) will not apply any deflation.
+#' @param ppp a logical; if it is TRUE the purchasing power parity (PPP) exchange rate will be used.  
 #' 
-#' @details  
+#' @details The parametric scale of Buhmann et al. (1988) can also be used assigning to \emph{s} parameter a value between 0 and 1. The parameter s is called  elasticity of equivalence.
+#' 
+#' The purchasing power parity exchange rate is useful for making comparisons between countries.  
 #' 
 #' @return A data.frame with the following variables:
-#' @return DB010 num
-#' @return DB020 factor
-#' @return DB040 factor
-#' @return DB090 num
-#' @return HX040 int
-#' @return HX050
-#' @return HX090
-#' @return ipuc numeric income per unit of consumption
-#' @return wHX040
+#' @return DB010 a numeric vector containing the year of the survey.
+#' @return DB020 a factor with one level which is the country considered.
+#' @return DB040 a factor with as many levels as there are regions in the country.
+#' @return DB090 a numeric vector containing information about household cross-sectional weight.
+#' @return HX040 an integer vector containing information about households size.
+#' @return HX050 a numeric vector containing information about the equivalised household size. The scale employed is the modified OECD scale.
+#' @return HX090 a numeric vector containing information about equivalised disposable income (with the modified OECD scale).
+#' @return ipuc a numeric vector containing the income per unit of consumption. This variable takes into account if deflac is not NULL, ppp is TRUE or/and the value assigned d to \emph{s}.  
+#' @return wHX040 a numeric vector which is obtained by multiplying DB090 by HX040. It represents household weights taking into account the size of the household.
 #' 
-#' @seealso
+#' @seealso 
 #' 
-#' @references K. Xu and L. Osberg (1998) A distribution-free  test for deprivation dominance, Econometric Reviews, 17, 415--429.
+#' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
 #' 
 #' @examples 
 #' data(eusilc2)
 #' ATdataset <- setupDataset(eusilc2, country = "AT")
+#' str(ATdataset)
 #'  
 #' @export  
 

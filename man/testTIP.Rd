@@ -8,13 +8,13 @@ testTIP(dataset1, dataset2, pz = 0.6, same.arpt.value = NULL,
   norm = FALSE, samplesize = 50)
 }
 \arguments{
-\item{dataset1}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset1}{a data.frame containing variables obtained by using the setupDataset function.}
 
-\item{dataset2}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset2}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{pz}{a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.}
 
-\item{same.arpt.value}{logical; if  TRUE, the same poverty threshold will be used for estimation of both TIP curve ordinates (see arpt).}
+\item{same.arpt.value}{a number that will be used as a common poverty threshold. If NULL, poverty thresholds will be calculated from each datasets (see arpt).}
 
 \item{norm}{logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).}
 
@@ -37,16 +37,16 @@ Statistical test procedure given by Xu and Osberg (1998) to study TIP dominance 
 TIP curve estimates.
 }
 \details{
-Because the TIP curve becomes horizontal at the arpr value, it is only necessary to have the test implemented over the interval [0, max{arpr1, arpr2}]. 
-For that reason both TIP curves are truncated at the same value equal to max{arpr1, arpr2} and ordinates are only compared at 
-at points p_i=i/samplesize, i=1, ..., k in the interval [0, max{arpr1, arpr2}]. (see arpr)
+Because the TIP curve becomes horizontal at the arpr value, it is only necessary to have the test implemented over the interval \eqn{\[ 0, \max \{ arpr1, arpr2 \} \]}. \eqn{p_1}{p[i]} For that reason both TIP curves are truncated at the same value equal to \eqn{max {arpr1, arpr2}} and ordinates are only compared at points \eqn{p_i=i/samplesize, \quad i=1, \dots, k} in the interval \eqn{[0, max{arpr1, arpr2}]} (see arpr).
+
+The null hypotesis to be tested is if the TIP curve calculated from dataset1 dominates the one calculated from dataset2.
 }
 \examples{
 data(eusilc2)
 ATdataset <- setupDataset(eusilc2, country = "AT")
 ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
 ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
-testTIP(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
+testTIP2(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
 
   
 }

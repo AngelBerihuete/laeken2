@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the Lorenz and the Generalized Lorenz curve ordinates.
+#' @description Estimates the Lorenz and the Generalized Lorenz curves ordinates.
 #' 
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param samp an integer which represents the number of ordinates to be estimated. The default is 10.  
 #' @param generalized logical; if TRUE the Generalized Lorenz curve ordinates will be estimated.
 #' 
@@ -12,7 +12,7 @@
 #' 
 #' @return A data.frame with the following components:
 #' @return x.lg vector of cumulated proportion of population.
-#' @return y.lg vector with values of the Lorenz or the Generalized Lorenz curve ordinates. 
+#' @return y.lg vector with values of the Lorenz or the Generalized Lorenz curves ordinates. 
 #' 
 #' @references B C Arnold (1987) Majorization and the Lorenz order: A brief introduction, Lecture Notes in Statistics, 43, Springer-Verlag.
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.

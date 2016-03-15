@@ -7,7 +7,7 @@
 arpr(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{arpt.value}{the at-risk-of-poverty threshold to be used  (see arpt).}
 
@@ -21,7 +21,7 @@ arpr(dataset, arpt.value, ci = FALSE, rep = 1000, verbose = FALSE)
 The value of the at-risk-of-poverty rate.
 }
 \description{
-Estimate the poverty rate which is defined as the share of people with an equivalized disposable income below the at-risk-of-poverty threshold.
+Estimates the poverty rate which is defined as the share of people with an equivalized disposable income below the at-risk-of-poverty threshold.
 }
 \details{
 The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale  (see setupDataset).

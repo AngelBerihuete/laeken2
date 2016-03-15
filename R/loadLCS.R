@@ -1,4 +1,4 @@
-#' @title loadLCS
+#' @title Living conditions survey 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' @description Function to load the LCS dataset from INE
 #' @details Todo

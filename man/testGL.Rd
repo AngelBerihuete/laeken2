@@ -7,9 +7,9 @@
 testGL(dataset1, dataset2, generalized = FALSE, samplesize = 10)
 }
 \arguments{
-\item{dataset1}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset1}{a data.frame containing variables obtained by the using setupDataset function.}
 
-\item{dataset2}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset2}{a data.frame containing variables obtained by the using setupDataset function.}
 
 \item{generalized}{logical; if TRUE the test will be applied to compare two Generalized Lorenz curves. In another case Lorenz curves will be compared.}
 
@@ -20,15 +20,15 @@ A list with the following components:
 
 Tvalue the value of the test-statistic
 
-p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when th Tvalue falls into an inconclusive region.
+p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when the Tvalue falls into an inconclusive region.
 
 decision if the Tvalue is less than the lower-bound of the critical value at the 5 percent significance level the decision is "Do not reject null hypothesis". If the Tvalue is greater than the upper-bound of the critical value at the 5 percent significance level the decision is "Reject null hypothesis". Lower and upper-bounds critical values are obtained from Kodde and Palm (1986). If Tvalue falls into an inconclusive region (between the lower- and upper-bounds) the p-value will be estimated following Wolak (1989).
 }
 \description{
-Statistical test procedure given by Xu (1997) to study Generalized Lorenz dominance from sample Generalized Lorenz curve estimates. It also includes the study of Lorenz dominance by default following Beach and Davidson (1983).
+Statistical test procedure given by Xu (1997) to study Generalized Lorenz dominance from sample Generalized Lorenz curve estimates.  Lorenz dominance from sample Lorenz curve estimates can also be studied (Beach and Davidson, 1983).
 }
 \details{
-The null hypotesis to be tested is if the Lorenz (GL) curve calculated from dataset1 dominates the one calculated from dataset2.
+The null hypotesis to be tested is if the  Lorenz (Generalized Lorenz) curve calculated from dataset1 dominates the one calculated from dataset2.
 }
 \examples{
 data(eusilc2)

@@ -7,7 +7,7 @@
 gini(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the Gini coefficient.}
 
@@ -19,7 +19,7 @@ gini(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 The value of the Gini index.
 }
 \description{
-Estimate the Gini inequality index of an income distribution.
+Estimates the Gini inequality index of an income distribution.
 }
 \details{
 The Gini index is calculated using the equivalized disposable income of each individual. Two types of equivalence scales can be used, the modified OECD scale and the parametric scale of Buhmann et al. (1988). The default is the modified OECD scale  (see setupDataset).

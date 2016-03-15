@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the poverty measure which is twice the area under the TIP curve.   
+#' @description Estimates the poverty measure which is twice the area under the TIP curve.   
 #' 
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param norm logical; if  TRUE, the area under the normalized TIP curve is then estimated (see tip). 
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for this area.

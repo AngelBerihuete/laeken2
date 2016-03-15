@@ -4,14 +4,13 @@
 #' 
 #' @description The auxiliary function OmegaTIP computes the (empirical) vector of TIP curve ordinates and its corresponding covariance matrix. This matrix will be used to compute the test-statistic to test for the TIP dominance relation between two TIP curves. 
 #' 
-#' 
-#' @param dataset1 a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used (see arpt).
-#' @param normalization logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).
-#' @param samp an integer which represents the number of TIP curve ordinates to be estimated. These ordinates will be estimated at points p_i, chosen such that 0 < p_1 < p_2 < ... p_samp and p_i=i/samp, i=1, ..., samp.
+#' @param norm logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).
+#' @param samp an integer which represents the number of TIP curve ordinates to be estimated. These ordinates will be estimated at points p_i, where p_i=i/samp, i=1, ..., samp.
 #'
 #'  
-#' @details Estimation of TIP curve ordinates and their covariance matrix is made following Beach and Davidson (1983) and Xu and Osberg (1998).
+#' @details Estimation of TIP curve ordinates and their covariance matrix are made following Beach and Davidson (1983) and Xu and Osberg (1998).
 #' 
 #' Calculations are made using the equivalized disposable income. The equivalence scales that can be employed are the modified OECD scale or the parametric scale of Buhmann et al. (1988). The default is the modified OECD scale (see setupDataset).
 #' 
@@ -27,7 +26,7 @@
 #' 
 #' @export  
 
-OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
+OmegaTIP <- function(dataset, arpt.value, norm = FALSE, samp){
   
   G <- arpt.value-dataset$ipuc
   dataset$pg <- pmax(G, 0) # poverty gaps
@@ -101,7 +100,7 @@ OmegaTIP <- function(dataset, arpt.value, normalization = FALSE, samp){
   rev.gammak.pk <- rev(gammak.pk)
   tip.curve <- gammak-rev.gammak.pk
   
-  if(normalization == TRUE){
+  if(norm == TRUE){
     Omega.tip <- Omega.tip/arpt.value^2
     tip.curve <- tip.curve/arpt.value
   }

@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the relative median at-risk-of-poverty gap which is the difference between the at-risk-of-poverty threshold and the median equivalized disposable income of people below the at-risk-of-poverty threshold, expressed as a percentage of the at-risk-of-poverty threshold.
+#' @description Estimates the relative median at-risk-of-poverty gap which is the difference between the at-risk-of-poverty threshold and the median equivalized disposable income of people below the at-risk-of-poverty threshold, expressed as a percentage of this threshold.
 #'
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the relative median at-risk-of-poverty gap.
 #' @param rep a number to do the confidence interval using boostrap technique.

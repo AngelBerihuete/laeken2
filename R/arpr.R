@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the poverty rate which is defined as the share of people with an equivalized disposable income below the at-risk-of-poverty threshold.
+#' @description Estimates the poverty rate which is defined as the share of people with an equivalized disposable income below the at-risk-of-poverty threshold.
 #' 
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the at-risk-of-poverty rate.
 #' @param rep a number to do the confidence interval using boostrap technique.

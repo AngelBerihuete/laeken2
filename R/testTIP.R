@@ -5,20 +5,21 @@
 #' @description Statistical test procedure given by Xu and Osberg (1998) to study TIP dominance from sample 
 #' TIP curve estimates.  
 #' 
-#' @param dataset1 a data.frame containing variables obtained by using setupDataset function.
-#' @param dataset2 a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset1 a data.frame containing variables obtained by using the setupDataset function.
+#' @param dataset2 a data.frame containing variables obtained by using the setupDataset function.
 #' @param pz a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.
-#' @param same.arpt.value logical; if  TRUE, the same poverty threshold will be used for estimation of both TIP curve ordinates (see arpt).
+#' @param same.arpt.value a number that will be used as a common poverty threshold. If NULL, poverty thresholds will be calculated from each datasets (see arpt).
 #' @param norm logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).
 #' @param samplesize an integer which represents the number of TIP curve ordinates to be estimated. The default is 50.
 #' 
-#' @details Because the TIP curve becomes horizontal at the arpr value, it is only necessary to have the test implemented over the interval [0, max{arpr1, arpr2}]. 
-#' For that reason both TIP curves are truncated at the same value equal to max{arpr1, arpr2} and ordinates are only compared at 
-#' at points p_i=i/samplesize, i=1, ..., k in the interval [0, max{arpr1, arpr2}]. (see arpr)
+#' @details Because the TIP curve becomes horizontal at the arpr value, it is only necessary to have the test implemented over the interval \eqn{\[ 0, \max \{ arpr1, arpr2 \} \]}. For that reason both TIP curves are truncated at the same value equal to \eqn{max {arpr1, arpr2}} and ordinates are only compared at points \eqn{p_i=i/samplesize, \quad i=1, \dots, k} in the interval \eqn{[0, max{arpr1, arpr2}]} (see arpr).
 #' 
+#' The null hypotesis to be tested is if the TIP curve calculated from dataset1 dominates the one calculated from dataset2. 
 #' 
 #' @return A list with the following components:
 #' @return Tvalue the value of the test-statistic
+## #' @return solution ¿es necesario mostrarlo?
+## #' @return threshold ¿nombre? the number of TIP ordinates which have been considered for comparison.
 #' @return p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when the Tvalue falls into an inconclusive region.
 #' @return decision if the Tvalue is less than the lower-bound of the critical value at the 5 percent significance level the decision is "Do not reject null hypothesis". 
 #' If the Tvalue is greater than the upper-bound of the critical value at the 5 percent significance level the decision is "Reject null hypothesis". Lower and upper-bounds 
@@ -37,7 +38,7 @@
 #' ATdataset <- setupDataset(eusilc2, country = "AT")
 #' ATdataset1 <- setupDataset(eusilc2, country = "AT", region = "Burgenland")
 #' ATdataset2 <- setupDataset(eusilc2, country = "AT", region = "Carinthia")
-#' testTIP(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
+#' testTIP2(ATdataset1, ATdataset, same.arpt.value = arpt(ATdataset))
 #' 
 #'   
 #' @export  

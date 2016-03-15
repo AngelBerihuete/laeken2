@@ -7,7 +7,7 @@
 miuc(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{ci}{logical; if  TRUE, 95 percent confidence interval is given for the mean income per unit of consumption.}
 
@@ -19,7 +19,7 @@ miuc(dataset, ci = FALSE, rep = 1000, verbose = FALSE)
 The value of mean income per unit of consumption
 }
 \description{
-Estimate the mean income per unit of consumption which is the mean of the equivalized disposable income.
+Estimates the mean income per unit of consumption which is the mean of the equivalized disposable income.
 }
 \details{
 The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).

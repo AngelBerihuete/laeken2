@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadLCS.R
 \name{loadLCS}
 \alias{loadLCS}
-\title{loadLCS}
+\title{Living conditions survey}
 \usage{
 loadLCS(lcs_d_file, lcs_h_file)
 }

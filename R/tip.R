@@ -2,9 +2,9 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate TIP curve ordinates. The TIP curve is defined by plotting the cumulated proportion of population on the x-axis and the cumulated per capita poverty gap (the distance between each income and the poverty threshold) on the y-axis from the biggest one downwards.   
+#' @description Estimates TIP curve ordinates. The TIP curve is defined by plotting the cumulated proportion of population on the x-axis and the cumulated per capita poverty gap (the distance between each income and the poverty threshold) on the y-axis from the biggest one downwards.   
 #' 
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param arpt.value the at-risk-of-poverty threshold to be used  (see arpt).
 #' @param norm logical; if  TRUE, the normalized TIP curve ordinates are computed using the normalized poverty gaps (poverty gaps divided by the poverty threshold).
 #' 

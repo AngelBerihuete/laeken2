@@ -7,7 +7,7 @@
 OmegaGL(dataset, samp)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{samp}{an integer which represents the number of the GL ordinates to be estimated. These ordinates will be estimated at points \eqn{p_i}, where \eqn{p_i=i/samp, \quad i=1, \dots, samp}.}
 }

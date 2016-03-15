@@ -21,3 +21,4 @@ Depends:
     saves,
     pspline
 RoxygenNote: 5.0.1
+Encoding: utf8

@@ -2,16 +2,16 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Estimate the  quintile share ratio of an income distribution. It is defined as the ratio of total income  received by the 20 percent of the population with the highest income to that received by the 20 percent of the population with the lowest income. 
+#' @description Estimates the  quintile share ratio of an income distribution. It is defined as the ratio of total income  received by the 20 percent of the population with the highest income to that received by the 20 percent of the population with the lowest income. 
 #' 
-#' @param dataset a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset a data.frame containing variables obtained by using the setupDataset function.
 #' @param ci logical; if  TRUE, 95 percent confidence interval is given for the quintile share ratio.
 #' @param rep a number to do the confidence interval using boostrap technique.
 #' @param verbose logical; if TRUE the confindence interval is plotted.
 #' 
 #' @details It is calculated using the equivalized disposable income. Two types of equivalence scales can be used, the modified OECD scale and the parametric scale of Buhmann et al. ( 1988). The default is the modified OECD scale  (see setupDataset).
 #' 
-#' @return The value of the Income quintile share ratio.
+#' @return The value of the income quintile share ratio.
 #'  
 #' @references B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
 #' @references \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Income_quintile_share_ratio}

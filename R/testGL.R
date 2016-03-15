@@ -2,21 +2,21 @@
 #' 
 #' @author A. Berihuete, C.D. Ramos and M.A. Sordo
 #' 
-#' @description Statistical test procedure given by Xu (1997) to study Generalized Lorenz dominance from sample Generalized Lorenz curve estimates. It also includes the study of Lorenz dominance by default following Beach and Davidson (1983).
+#' @description Statistical test procedure given by Xu (1997) to study Generalized Lorenz dominance from sample Generalized Lorenz curve estimates.  Lorenz dominance from sample Lorenz curve estimates can also be studied (Beach and Davidson, 1983).
 #'   
 #' 
-#' @param dataset1 a data.frame containing variables obtained by using setupDataset function.
-#' @param dataset2 a data.frame containing variables obtained by using setupDataset function.
+#' @param dataset1 a data.frame containing variables obtained by the using setupDataset function.
+#' @param dataset2 a data.frame containing variables obtained by the using setupDataset function.
 #' @param generalized logical; if TRUE the test will be applied to compare two Generalized Lorenz curves. In another case Lorenz curves will be compared.
 #' @param samplesize an integer which represents the number of Lorenz (Generalized Lorenz) curve ordinates to be estimated for comparison. The default is 10.
 #' 
 #' 
-#' @details The null hypotesis to be tested is if the Lorenz (GL) curve calculated from dataset1 dominates the one calculated from dataset2. 
+#' @details The null hypotesis to be tested is if the  Lorenz (Generalized Lorenz) curve calculated from dataset1 dominates the one calculated from dataset2. 
 #' 
 #' 
 #' @return A list with the following components:
 #' @return Tvalue the value of the test-statistic
-#' @return p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when th Tvalue falls into an inconclusive region.
+#' @return p.value simulated p-value of the test-statistic Tvalue (Wolak, 1989). It is calculated only when the Tvalue falls into an inconclusive region.
 #' @return decision if the Tvalue is less than the lower-bound of the critical value at the 5 percent significance level the decision is "Do not reject null hypothesis". If the Tvalue is greater than the upper-bound of the critical value at the 5 percent significance level the decision is "Reject null hypothesis". Lower and upper-bounds critical values are obtained from Kodde and Palm (1986). If Tvalue falls into an inconclusive region (between the lower- and upper-bounds) the p-value will be estimated following Wolak (1989).
 #' 
 #' 

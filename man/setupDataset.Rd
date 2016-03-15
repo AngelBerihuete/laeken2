@@ -8,55 +8,58 @@ setupDataset(dataset, country = "ES", region = "all", s = "OECD",
   deflac = NULL, ppp = FALSE)
 }
 \arguments{
-\item{dataset}{A file containing dataset EU-SILC format.}
+\item{dataset}{a data.frame containing variables in the EU-SILC microdata format.}
 
-\item{country}{}
+\item{country}{a character string specifying the country whose data will be considered.}
 
-\item{region}{}
+\item{region}{a character string specifying the region of the country whose data will be considered.}
 
-\item{s}{if it is set OECD the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al. (1988) can also be used. The default is the modified OECD scale (see setupDataset).}
+\item{s}{either a character string or a numeric value between 0 and 1 specifying the equivalence scale to be used to obtain the equivalized disposable income. The default ("OECD") considers the standar modified OECD scale.}
 
-\item{deflac}{a number to be used as a deflactor}
+\item{deflac}{numeric; a number to be used as a deflator. The default (NULL) will not apply any deflation.}
 
-\item{ppp}{}
+\item{ppp}{a logical; if it is TRUE the purchasing power parity (PPP) exchange rate will be used.}
 }
 \value{
 A data.frame with the following variables:
 
-DB010 num
+DB010 a numeric vector containing the year of the survey.
 
-DB020 factor
+DB020 a factor with one level which is the country considered.
 
-DB040 factor
+DB040 a factor with as many levels as there are regions in the country.
 
-DB090 num
+DB090 a numeric vector containing information about household cross-sectional weight.
 
-HX040 int
+HX040 an integer vector containing information about households size.
 
-HX050
+HX050 a numeric vector containing information about the equivalised household size. The scale employed is the modified OECD scale.
 
-HX090
+HX090 a numeric vector containing information about equivalised disposable income (with the modified OECD scale).
 
-ipuc numeric income per unit of consumption
+ipuc a numeric vector containing the income per unit of consumption. This variable takes into account if deflac is not NULL, ppp is TRUE or/and the value assigned d to \emph{s}.
 
-wHX040
+wHX040 a numeric vector which is obtained by multiplying DB090 by HX040. It represents household weights taking into account the size of the household.
 }
 \description{
-Extract and transform variables taken directly from the EU-SILC survey.
+Extracts and transforms variables taken directly from the EU-SILC survey.
 }
 \details{
+The parametric scale of Buhmann et al. (1988) can also be used assigning to \emph{s} parameter a value between 0 and 1. The parameter s is called  elasticity of equivalence.
 
+The purchasing power parity exchange rate is useful for making comparisons between countries.
 }
 \examples{
 data(eusilc2)
 ATdataset <- setupDataset(eusilc2, country = "AT")
+str(ATdataset)
  
 }
 \author{
 A. Berihuete, C.D. Ramos and M.A. Sordo
 }
 \references{
-K. Xu and L. Osberg (1998) A distribution-free  test for deprivation dominance, Econometric Reviews, 17, 415--429.
+B. Buhmann et al. (1988) Equivalence scales, well-being, inequality and poverty: sensitivity estimates across ten countries using the Luxembourg Income Study (LIS) database, Review of Income and Wealth, 34, 115--142.
 }
 \seealso{
 

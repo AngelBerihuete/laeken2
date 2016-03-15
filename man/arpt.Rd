@@ -7,7 +7,7 @@
 arpt(dataset, pz = 0.6, ci = FALSE, rep = 500, verbose = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing a few variables taken directly from the EU-SILC survey as well as others which have been derived from other variables for convenience. This data.frame is created using the function setupDataset (see setupDataset).}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{pz}{a number between 0 and 1 which represents the percentage to be used to calculate the at-risk-of-poverty threshold. The default is 0.6.}
 
@@ -21,7 +21,7 @@ arpt(dataset, pz = 0.6, ci = FALSE, rep = 500, verbose = FALSE)
 The value of the at-risk-of-poverty threshold.
 }
 \description{
-Estimate the at-risk-of-poverty threshold which is set at 60 percent of the median equivalized disposable income using the standard definition.
+Estimates the at-risk-of-poverty threshold which is set at 60 percent of the median equivalized disposable income using the standard definition.
 }
 \details{
 The equivalized disposable income is calculated using the standar equivalence scale called the modified OECD scale and recommended by Eurostat. The parametric scale of Buhmann et al.(1988) can also be used. The default is the modified OECD scale  (see setupDataset).

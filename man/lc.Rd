@@ -7,7 +7,7 @@
 lc(dataset, samp = 10, generalized = FALSE, plot = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{samp}{an integer which represents the number of ordinates to be estimated. The default is 10.}
 
@@ -18,10 +18,10 @@ A data.frame with the following components:
 
 x.lg vector of cumulated proportion of population.
 
-y.lg vector with values of the Lorenz or the Generalized Lorenz curve ordinates.
+y.lg vector with values of the Lorenz or the Generalized Lorenz curves ordinates.
 }
 \description{
-Estimate the Lorenz and the Generalized Lorenz curve ordinates.
+Estimates the Lorenz and the Generalized Lorenz curves ordinates.
 }
 \details{
 Lorenz and Generalized Lorenz curves ordinates are computed using the equivalized disposable income. The equivalence scales employed are the modified OECD scale and the parametric scale of Buhmann et al. (1988) (see setupDataset).

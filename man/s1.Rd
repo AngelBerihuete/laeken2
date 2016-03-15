@@ -8,7 +8,7 @@ s1(dataset, arpt.value, norm = FALSE, ci = FALSE, rep = 1000,
   verbose = FALSE)
 }
 \arguments{
-\item{dataset}{a data.frame containing variables obtained by using setupDataset function.}
+\item{dataset}{a data.frame containing variables obtained by using the setupDataset function.}
 
 \item{arpt.value}{the at-risk-of-poverty threshold to be used  (see arpt).}
 
@@ -24,7 +24,7 @@ s1(dataset, arpt.value, norm = FALSE, ci = FALSE, rep = 1000,
 The value of the poverty measure.
 }
 \description{
-Estimate the highest point of the TIP curve which is a measure of the intensity of poverty. It is equal to the mean poverty gap (difference between the poverty threshold and the equivalized disposable income).
+Estimates the highest point of the TIP curve which is a measure of the intensity of poverty. It is equal to the mean poverty gap (difference between the poverty threshold and the equivalized disposable income).
 }
 \details{
 It is computed using the equivalized disposable income. The equivalence scales that can be employed are the modified OECD scale or the parametric scale of Buhmann et al. (1988). The default is the modified OECD scale (see setupDataset).
